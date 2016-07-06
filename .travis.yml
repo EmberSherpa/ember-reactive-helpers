@@ -26,6 +26,10 @@ before_install:
   - npm install -g bower
   - npm install phantomjs-prebuilt
 
+before_script:
+ - git config --global user.email "taras@embersherpa.com"
+ - git config --global user.name "Taras Mankovski"
+
 install:
   - npm install
   - bower install
