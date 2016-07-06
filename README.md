@@ -22,6 +22,11 @@ This helper can be used when you need to defer execution of a helper.
 {{/with}}
 ```
 
+### `{{shhh anything}}`
+
+`{{shhh` helper will supress any output that's passed into it. This is useful when you want to compute a helper 
+without having it's output rendered.
+
 ## Installation
 
 ```
