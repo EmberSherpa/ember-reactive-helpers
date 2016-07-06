@@ -1,8 +1,16 @@
 # ember-reactive-helpers
 
+[![Build Status](https://travis-ci.org/Taras Mankovski/ember-reactive-helpers.svg)](https://travis-ci.org/Taras Mankovski/ember-reactive-helpers)
+[![npm version](https://badge.fury.io/js/ember-reactive-helpers.svg)](http://badge.fury.io/js/ember-reactive-helpers)
+[![Code Climate](https://codeclimate.com/github/Taras Mankovski/ember-reactive-helpers/badges/gpa.svg)](https://codeclimate.com/github/Taras Mankovski/ember-reactive-helpers)
+[![Test Coverage](https://codeclimate.com/github/Taras Mankovski/ember-reactive-helpers/badges/coverage.svg)](https://codeclimate.com/github/Taras Mankovski/ember-reactive-helpers/coverage)
+[![Dependency Status](https://david-dm.org/Taras Mankovski/ember-reactive-helpers.svg)](https://david-dm.org/Taras Mankovski/ember-reactive-helpers)
+
 Collection of helpers to aid in reactive template programming with Ember.js.
 
-## `(closure helperName arg1 arg2)`
+## Helpers
+
+### `(closure helperName arg1 arg2)`
 
 `(closure` helper will create a closure of a specified helper and curry arguments that are passed into it. 
 This helper is only useful when used a subsexpression. Using it as a regular helper will result in `function` being rendered.
@@ -16,23 +24,17 @@ This helper can be used when you need to defer execution of a helper.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```
+ember install ember-reactive-helpers
+```
 
-## Running
+## Helpful Links
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+- ### [Live Demo](http://Taras Mankovski/.github.io/ember-reactive-helpers)
 
-## Running Tests
+- ### [Changelog](CHANGELOG.md)
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+## Looking for help?
+If it is a bug [please open an issue on GitHub](http://github.com/Taras Mankovski/ember-reactive-helpers/issues).
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+## Usage
