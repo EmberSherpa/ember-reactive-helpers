@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Taras Mankovski/ember-reactive-helpers.git"
+    "url": "git@github.com:EmberSherpa/ember-reactive-helpers.git"
   },
   "engines": {
     "node": ">= 0.10.0"
