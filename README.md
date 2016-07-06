@@ -1,6 +1,18 @@
-# Ember-reactive-helpers
+# ember-reactive-helpers
 
-This README outlines the details of collaborating on this Ember addon.
+Collection of helpers to aid in reactive template programming with Ember.js.
+
+## `(closure helperName arg1 arg2)`
+
+`(closure` helper will create a closure of a specified helper and curry arguments that are passed into it. 
+This helper is only useful when used a subsexpression. Using it as a regular helper will result in `function` being rendered.
+This helper can be used when you need to defer execution of a helper. 
+
+```
+{{#with (closure 'contains' (array 'foo' 'bar')) as |checkContains|}}
+  {{compute (checkContains 'foo')}}
+{{/with}}
+```
 
 ## Installation
 
