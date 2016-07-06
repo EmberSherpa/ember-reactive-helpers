@@ -16,7 +16,7 @@ Collection of helpers to aid in reactive template programming with Ember.js.
 This helper is only useful when used a subsexpression. Using it as a regular helper will result in `function` being rendered.
 This helper can be used when you need to defer execution of a helper. 
 
-```
+```js
 {{#with (closure 'contains' (array 'foo' 'bar')) as |checkContains|}}
   {{compute (checkContains 'foo')}}
 {{/with}}
