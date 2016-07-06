@@ -1,7 +1,7 @@
 {
   "name": "ember-reactive-helpers",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Collection of helpers to aid in reactive template programming with Ember.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "git@github.com:EmberSherpa/ember-reactive-helpers.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Taras Mankovski <taras@embersherpa.com>",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
