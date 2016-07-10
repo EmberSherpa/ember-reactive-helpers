@@ -1,15 +1,13 @@
 /* jshint expr:true */
 import { expect } from 'chai';
+import { beforeEach } from 'mocha';
 import {
   describeComponent,
   it
 } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 
-const {
-  Helper
-} = Ember;
+import registerHelper from '../../helpers/register-helper';
 
 describeComponent(
   'closure-helper',
@@ -18,17 +16,20 @@ describeComponent(
     integration: true
   },
   function() {
-    it('accepts helper as an argument and curries arguments', function(){
-      let containsHelper = Helper.helper(function ([array, item]) {
-          return array.indexOf(item) > -1;
-      });
+    beforeEach(function(){
+      registerHelper(this);
+    });
 
-      this.register('helper:contains', containsHelper);
+    it('accepts helper as an argument and curries arguments', function(){
+
+      this.registerHelper('contains', function ([array, item]) {
+        return array.indexOf(item) > -1;
+      });
 
       this.set('array', [ 'foo', 'bar' ] );
       this.set('item', 'foo');
 
-      this.render(hbs`{{if (compute (closure 'contains' array) item) 'yes' 'no'}}`);
+      this.render(hbs`{{if (compute (closure (helper 'contains') array) item) 'yes' 'no'}}`);
 
       expect(this.$().text()).to.equal('yes');
 
@@ -43,7 +44,7 @@ describeComponent(
 
     it('composes simple helpers', function(){
 
-      this.render(hbs`{{compute (closure 'capitalize') 'hello world'}}`);
+      this.render(hbs`{{compute (closure (helper 'capitalize')) 'hello world'}}`);
 
       expect(this.$().text()).to.equal('Hello world');
 
