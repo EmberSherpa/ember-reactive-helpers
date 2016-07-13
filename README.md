@@ -25,6 +25,14 @@ When you call the returned helper the helper will becalled with all passed in ar
 {{/with}}
 ```
 
+### `(transition-to 'destination` (query-params foo='bar'))`
+
+`(transition-to)` helper the same argument signature as `link-to` but evaluates to an action that can be called to trigger transition.
+
+```hbs
+<button {{action (transtion-to 'index')}}>Go to Index</button>
+```
+
 ### `{{shhh anything}}`
 
 `{{shhh` helper will supress any output that's passed into it. This is useful when you want to compute a helper 
