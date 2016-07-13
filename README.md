@@ -18,7 +18,7 @@ Will resovle the helper and return resolved helper.
 When you call the returned helper the helper will becalled with all passed in arguments.
 
 ```js
-{{#with (closure 'contains' (array 'foo' 'bar')) as |checkContains|}}
+{{#with (closure (helper 'contains') (array 'foo' 'bar')) as |checkContains|}}
   {{compute (checkContains 'foo')}}
 {{/with}}
 ```
