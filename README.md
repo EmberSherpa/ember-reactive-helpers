@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/EmberSherpa/ember-reactive-helpers.svg)](https://travis-ci.org/EmberSherpa/ember-reactive-helpers)
 [![npm version](https://badge.fury.io/js/ember-reactive-helpers.svg)](http://badge.fury.io/js/ember-reactive-helpers)
-[![Code Climate](https://codeclimate.com/github/EmberSherpa/ember-reactive-helpers/badges/gpa.svg)](https://codeclimate.com/github/EmberSherpa/ember-reactive-helpers)
-[![Test Coverage](https://codeclimate.com/github/EmberSherpa/ember-reactive-helpers/badges/coverage.svg)](https://codeclimate.com/github/EmberSherpa/ember-reactive-helpers/coverage)
 [![Dependency Status](https://david-dm.org/EmberSherpa/ember-reactive-helpers.svg)](https://david-dm.org/EmberSherpa/ember-reactive-helpers)
 
 Collection of helpers to aid in reactive template programming with Ember.js.
