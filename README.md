@@ -23,7 +23,7 @@ When you call the returned helper the helper will becalled with all passed in ar
 {{/with}}
 ```
 
-### `(transition-to 'destination` (query-params foo='bar'))`
+### `(transition-to 'destination' model (query-params foo='bar'))`
 
 `(transition-to)` helper the same argument signature as `link-to` but evaluates to an action that can be called to trigger transition.
 
