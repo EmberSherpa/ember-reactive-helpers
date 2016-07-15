@@ -36,6 +36,23 @@ When you call the returned helper the helper will becalled with all passed in ar
 `{{shhh` helper will supress any output that's passed into it. This is useful when you want to compute a helper 
 without having it's output rendered.
 
+### `(r/debugger)`
+
+`(r/debugger)` will create a helper that will inject a debugger breakpoint into a helper pipe. It will pass through the value,
+that's passed into the helper.
+
+```hbs
+<button {{action (pipe (some-helper) (r/debugger) (some-other-helper))}}>Do!</button>
+```
+
+### `(r/log 'your message')`
+
+`(r/log)` helper will inject a log message and the value that it receives.
+
+```hbs
+<button {{action (pipe (r/log 'before save') (action 'save') (r/log 'after save')) model}}>Save</button>
+```
+
 ## Installation
 
 ```
