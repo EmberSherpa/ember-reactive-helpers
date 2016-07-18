@@ -7,7 +7,7 @@ import {
 import hbs from 'htmlbars-inline-precompile';
 
 describeComponent(
-  'rget',
+  'r/get',
   'Integration: r/get',
   {
     integration: true
