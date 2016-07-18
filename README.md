@@ -12,7 +12,7 @@ Collection of helpers to aid in reactive template programming with Ember.js.
 
 Will resovle the helper and return resolved helper. 
 
-### `(closure helper arg1 arg2)`
+### `(closure helper [arg1 arg2 ...])`
 
 `(closure` helper accepts a helper as first argument and creates a closure and curries the passed in arguments.
 When you call the returned helper the helper will becalled with all passed in arguments.
@@ -45,7 +45,7 @@ that's passed into the helper.
 <button {{action (pipe (some-helper) (r/debugger) (some-other-helper))}}>Do!</button>
 ```
 
-### `(r/log 'your message')`
+### `(r/log ['your message'])`
 
 `(r/log)` helper will evaluate to a function. When called, this function will log the passed in messsage and arguments that it received.
 
@@ -56,6 +56,19 @@ that's passed into the helper.
 ### `(r/get propName)`
 
 `(r/get)` helper returns a function. When called, the function will return value taken from object that it receives as first argument at property propName.
+
+```hbs
+{{compute (r/get 'animal') (hash animal='cat')}} {{! //=> cat }}
+```
+
+### `(r/param [index])`
+
+`(r/param)` return a function. When called, this function will return received argument at specified index.
+
+```hbs
+{{compute (r/param) 'hello' 'world'}} {{! //=> 'hello'}}
+{{compute (r/param 1) 'hello' 'world'}} {{! //=> 'world'}}
+```
 
 ## Installation
 
