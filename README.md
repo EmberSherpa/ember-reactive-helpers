@@ -47,11 +47,15 @@ that's passed into the helper.
 
 ### `(r/log 'your message')`
 
-`(r/log)` helper will inject a log message and the value that it receives.
+`(r/log)` helper will evaluate to a function. When called, this function will log the passed in messsage and arguments that it received.
 
 ```hbs
 <button {{action (pipe (r/log 'before save') (action 'save') (r/log 'after save')) model}}>Save</button>
 ```
+
+### `(r/get propName)`
+
+`(r/get)` helper returns a function. When called, the function will return value taken from object that it receives as first argument at property propName.
 
 ## Installation
 

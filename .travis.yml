@@ -4,6 +4,7 @@ node_js:
   - "4"
 
 sudo: required
+dist: trusty
 
 cache:
   directories:
