@@ -13,7 +13,7 @@ Collection of helpers to aid in reactive template programming with Ember.js.
 Returns helper as a function.
 
 ```js
-{{#with (closure (helper 'contains') (array 'foo' 'bar')) as |checkContains|}}
+{{#with (action (helper 'contains') (array 'foo' 'bar')) as |checkContains|}}
   {{compute (checkContains 'foo')}}
 {{/with}}
 ```
