@@ -9,18 +9,33 @@ Collection of helpers to aid in reactive template programming with Ember.js.
 ## Introduction
 
 Reactive helpers are helpers that return functions. These functions can be bound to event handlers 
-to process data on the way up in the Data Down Actions Up cycle.
+to process data on the way up in the Data Down Actions Up cycle. `r` helper makes it possible to use
+[`ember-composable-helpers`](/DockYard/ember-composable-helpers) in event handlers where execution of the helper is delayed until event is triggered.
 
 ## Helpers
 
-### `(r helperName)`
+### `(r helper [arg1 arg2 ...])`
 
-Returns helper as a function.
+Returns a function for a given helper and curry arguments to it.
+
+```hbs
+<input value={{value}} oninput={{action (pipe (r 'dasherize') (mut value)) value="target.value"}}
+```
+
+`r` helper accepts functions as helpers. For example, lets say you have a method on the context called `addNumbers`
 
 ```js
-{{#with (action (helper 'contains') (array 'foo' 'bar')) as |checkContains|}}
-  {{compute (checkContains 'foo')}}
-{{/with}}
+export default Ember.Component.extend({
+  addNumbers([a, b]) {
+    return a + b;
+  }
+});
+```
+
+You can use it in the template.
+
+```hbs
+<button {{action (pipe (r addNumbers 1) (action (mut count))) count}}>+1</button>
 ```
 
 ### `(r/get propName)`
@@ -55,6 +70,10 @@ that's passed into the helper.
 ```hbs
 <button {{action (pipe (r/log 'before save') (action 'save') (r/log 'after save')) model}}>Save</button>
 ```
+
+### `(r/tap value)
+
+`(r/tap value)` helper will evaluate to a function that'll return the passed in argument. 
 
 ### `{{shhh anything}}`
 

@@ -43,6 +43,7 @@
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
+    "ember-math-helpers": "1.2.1",
     "ember-resolver": "^2.0.3",
     "loader.js": "^4.0.1"
   },
