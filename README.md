@@ -19,7 +19,7 @@ to process data on the way up in the Data Down Actions Up cycle. `r` helper make
 Returns a function for a given helper and curry arguments to it.
 
 ```hbs
-<input value={{value}} oninput={{action (pipe (r 'dasherize') (mut value)) value="target.value"}}
+<input value={{value}} oninput={{action (pipe (r 'dasherize') (action (mut value))) value="target.value"}}
 ```
 
 `r` helper accepts functions as helpers. For example, lets say you have a method on the context called `addNumbers`
