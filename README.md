@@ -17,10 +17,8 @@ to process data on the way up in the Data Down Actions Up cycle.
 
 Returns helper as a function.
 
-```js
-{{#with (action (helper 'contains') (array 'foo' 'bar')) as |checkContains|}}
-  {{compute (checkContains 'foo')}}
-{{/with}}
+```hbs
+<input value={{value}} oninput={{action (pipe (r 'dasherize') (mut value)) value="target.value"}}
 ```
 
 ### `(r/get propName)`
