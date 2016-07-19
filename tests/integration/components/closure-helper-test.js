@@ -29,7 +29,7 @@ describeComponent(
       this.set('array', [ 'foo', 'bar' ] );
       this.set('item', 'foo');
 
-      this.render(hbs`{{if (compute (closure (helper 'contains') array) item) 'yes' 'no'}}`);
+      this.render(hbs`{{if (compute (action (helper 'contains') array) item) 'yes' 'no'}}`);
 
       expect(this.$().text()).to.equal('yes');
 
@@ -44,7 +44,7 @@ describeComponent(
 
     it('composes simple helpers', function(){
 
-      this.render(hbs`{{compute (closure (helper 'capitalize')) 'hello world'}}`);
+      this.render(hbs`{{compute (action (helper 'capitalize')) 'hello world'}}`);
 
       expect(this.$().text()).to.equal('Hello world');
 

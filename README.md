@@ -10,12 +10,7 @@ Collection of helpers to aid in reactive template programming with Ember.js.
 
 ### `(helper 'helperName')`
 
-Will resovle the helper and return resolved helper. 
-
-### `(closure helper [arg1 arg2 ...])`
-
-`(closure` helper accepts a helper as first argument and creates a closure and curries the passed in arguments.
-When you call the returned helper the helper will becalled with all passed in arguments.
+Returns helper as a function.
 
 ```js
 {{#with (closure (helper 'contains') (array 'foo' 'bar')) as |checkContains|}}
