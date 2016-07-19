@@ -71,7 +71,7 @@ that's passed into the helper.
 <button {{action (pipe (r/log 'before save') (action 'save') (r/log 'after save')) model}}>Save</button>
 ```
 
-### `(r/tap value)
+### `(r/tap value)`
 
 `(r/tap value)` helper will evaluate to a function that'll return the passed in argument. 
 
