@@ -1,31 +1,32 @@
 import Ember from 'ember';
 
 const {
-  Logger: { error },
   getOwner,
   typeOf,
-  isEmpty
+  isEmpty,
+  assert
 } = Ember;
 
 export default Ember.Helper.extend({
-  compute([helperName]) {
-    if (typeOf(helperName) !== 'string' || isEmpty(helperName)) {
-      error('helper helper must receive a helper name.');
+  compute([callable, ...curry]) {
+
+    if (typeOf(callable) === 'string') {
+      assert('r helper name must not be empty', !isEmpty(callable));
+
+      let owner = getOwner(this);
+      let helper = owner._lookupFactory(`helper:${callable}`);
+
+      assert(`r helper must be able to resolve ${callable} to a helper`, helper);
+      assert(`r helper must have a compute function for ${callable} helper`, helper.compute.call);
+
+      callable = helper.compute;
     }
 
-    let owner = getOwner(this);
-    let helper = owner._lookupFactory(`helper:${helperName}`);
+    assert('r helper must receive a callable function', callable.call);
 
-    if (isEmpty(helper)) {
-      error(`helper helper could not resolve helper with name ${helperName}`);
-    }
-
-    if (typeOf(helper.compute) !== 'function') {
-      error(`helper helper resolved a helper that doesn't have a compute function`);
-    }
-
-    return function() {
-      return helper.compute.call(null, arguments);
+    return function(...args) {
+      let curried = curry.concat(args);
+      return callable.call(null, curried);
     };
   }
 });
