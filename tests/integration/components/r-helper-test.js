@@ -10,8 +10,8 @@ import hbs from 'htmlbars-inline-precompile';
 import registerHelper from '../../helpers/register-helper';
 
 describeComponent(
-  'helper-helper',
-  'Integration: HelperHelper',
+  'r/helper',
+  'Integration: r/helper',
   {
     integration: true
   },
@@ -24,7 +24,7 @@ describeComponent(
         return str.toUpperCase();
       });
 
-      this.render(hbs`{{compute (helper 'uppercase') 'foo'}}`);
+      this.render(hbs`{{compute (r/helper 'uppercase') 'foo'}}`);
       expect(this.$().text()).to.equal('FOO');
     });
   }
