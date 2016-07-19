@@ -10,7 +10,7 @@ Collection of helpers to aid in reactive template programming with Ember.js.
 
 Reactive helpers are helpers that return functions. These functions can be bound to event handlers 
 to process data on the way up in the Data Down Actions Up cycle. `r` helper makes it possible to use
-[`ember-composable-helpers`](/DockYard/ember-composable-helpers) in event handlers where execution of the helper is delayed until event is triggered.
+[`ember-composable-helpers`](https://github.com/DockYard/ember-composable-helpers) in event handlers where execution of the helper is delayed until event is triggered.
 
 ## Helpers
 
