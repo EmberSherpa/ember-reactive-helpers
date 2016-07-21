@@ -44,6 +44,18 @@ describeComponent(
       expect(this.$().text()).to.equal('FOO');
     });
 
+    it('maintains reference to helpers instance on complex helpers', function(){
+      this.registerHelper('uppercase', Helper.extend({
+        compute([str]) {
+          this.set('str', str);
+          return str.toUpperCase();
+        }
+      }));
+
+      this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
+      expect(this.$().text()).to.equal('FOO');
+    });
+
     it('curries passed in arguments', function(){
       this.render(hbs`{{compute (r 'add' 5) 10}}`);
       expect(this.$().text()).to.equal('15');

@@ -10,6 +10,8 @@ const {
 export default Ember.Helper.extend({
   compute([callable, ...curry]) {
 
+    let helperInstance = null;
+
     if (typeOf(callable) === 'string') {
       assert('r helper name must not be empty', !isEmpty(callable));
 
@@ -25,7 +27,7 @@ export default Ember.Helper.extend({
       }
 
       if (helper.isHelperFactory) {
-        let helperInstance = helper.create();
+        helperInstance = helper.create();
         callable = helperInstance.compute;
       }
     }
@@ -34,7 +36,7 @@ export default Ember.Helper.extend({
 
     return function(...args) {
       let curried = curry.concat(args);
-      return callable.call(null, curried);
+      return callable.call(helperInstance, curried);
     };
   }
 });
