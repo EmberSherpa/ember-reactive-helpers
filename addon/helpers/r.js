@@ -28,6 +28,7 @@ export default Ember.Helper.extend({
 
       if (helper.isHelperFactory) {
         helperInstance = helper.create();
+        helperInstance._stream = this._stream;
         callable = helperInstance.compute;
       }
     }

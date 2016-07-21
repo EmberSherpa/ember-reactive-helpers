@@ -10,7 +10,8 @@ import Ember from 'ember';
 
 const {
   run,
-  Helper
+  Helper,
+  A
 } = Ember;
 
 import registerHelper from '../../helpers/register-helper';
@@ -54,6 +55,19 @@ describeComponent(
 
       this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
       expect(this.$().text()).to.equal('FOO');
+    });
+
+    it('allows complex object to call recompute', function(){
+      let array = new A(['a', 'b', 'c']);
+      this.set('array', array);
+
+      this.render(hbs`{{compute (r 'object-at' 1 array)}}`);
+
+      expect(this.$().text()).to.equal('b');
+
+      run( () => array.insertAt(0, 'z') );
+
+      expect(this.$().text()).to.equal('a');
     });
 
     it('curries passed in arguments', function(){

@@ -38,7 +38,7 @@
     "ember-cli-release": "1.0.0-beta.2",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-composable-helpers": "0.26.2",
+    "ember-composable-helpers": "0.27.0",
     "ember-data": "^2.6.0-beta.1",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
