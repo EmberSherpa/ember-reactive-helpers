@@ -9,7 +9,8 @@ import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
 
 const {
-  run
+  run,
+  Helper
 } = Ember;
 
 import registerHelper from '../../helpers/register-helper';
@@ -24,14 +25,25 @@ describeComponent(
     beforeEach(function(){
       registerHelper(this);
     });
-    it('renders', function() {
-      this.registerHelper('uppercase', function ([str]) {
+    it('supports simple helpers', function() {
+      this.registerHelper('uppercase', Helper.helper(function ([str]) {
         return str.toUpperCase();
-      });
+      }));
 
       this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
       expect(this.$().text()).to.equal('FOO');
     });
+    it('supports complex helpers', function(){
+      this.registerHelper('uppercase', Helper.extend({
+        compute([str]) {
+          return str.toUpperCase();
+        }
+      }));
+
+      this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
+      expect(this.$().text()).to.equal('FOO');
+    });
+
     it('curries passed in arguments', function(){
       this.render(hbs`{{compute (r 'add' 5) 10}}`);
       expect(this.$().text()).to.equal('15');

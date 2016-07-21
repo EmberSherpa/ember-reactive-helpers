@@ -17,9 +17,17 @@ export default Ember.Helper.extend({
       let helper = owner._lookupFactory(`helper:${callable}`);
 
       assert(`r helper must be able to resolve ${callable} to a helper`, helper);
-      assert(`r helper must have a compute function for ${callable} helper`, helper.compute.call);
 
-      callable = helper.compute;
+      if (helper.isHelperInstance) {
+        assert(`r helper must have a compute function for ${callable} helper`, helper.compute.call);
+
+        callable = helper.compute;
+      }
+
+      if (helper.isHelperFactory) {
+        let helperInstance = helper.create();
+        callable = helperInstance.compute;
+      }
     }
 
     assert('r helper must receive a callable function', callable.call);
