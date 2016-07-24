@@ -88,6 +88,15 @@ without having it's output rendered.
 <button {{action (transtion-to 'index')}}>Go to Index</button>
 ```
 
+### `(throttle action wait [immidiate])`
+
+`(throttle)` helper will ensure that the action is only triggered once per given wait period. 
+The action will be triggered at the end of the wait period unless `immidate` is set to true.
+
+```hbs
+<button {{action (throttle (action 'increment') 100)}}>Increment Count</button>
+```
+
 ## Installation
 
 ```
