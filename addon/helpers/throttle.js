@@ -4,10 +4,9 @@ const {
   run: { throttle }
 } = Ember;
 
-export function throttleHelper([callback, ...params]/*, hash*/) {
-  return function(...args) {
-    params = [callback, args].concat(params);
-    return throttle(null, ...params);
+export function throttleHelper([callback, wait, immidiate = false]) {
+  return function(value) {
+    return throttle(null, callback, value, wait, immidiate);
   };
 }
 
