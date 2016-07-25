@@ -94,7 +94,15 @@ without having it's output rendered.
 The action will be triggered at the end of the wait period unless `immidate` is set to true.
 
 ```hbs
-<button {{action (throttle (action 'increment') 100)}}>Increment Count</button>
+<button {{action (throttle (action 'increment') 100)}}>+1</button>
+```
+
+### `(debounce action wait [immidiate])`
+
+`(debounce)` helper waits for specified time to pass before triggering callback. All intemidiate events are discarded.
+
+```hbs
+<button {{action (debounce (pipe (r 'add' 1) (action (mut count)) ) 100) count}}>+1</button>
 ```
 
 ## Installation
