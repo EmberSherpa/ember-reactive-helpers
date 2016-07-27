@@ -85,7 +85,7 @@ without having it's output rendered.
 `(transition-to)` helper the same argument signature as `link-to` but evaluates to an action that can be called to trigger transition.
 
 ```hbs
-<button {{action (transtion-to 'index')}}>Go to Index</button>
+<button {{action (transition-to 'index')}}>Go to Index</button>
 ```
 
 ### `(throttle action wait [immidiate])`
