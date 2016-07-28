@@ -88,7 +88,7 @@ without having it's output rendered.
 <button {{action (transtion-to 'index')}}>Go to Index</button>
 ```
 
-### `(throttle action wait [immidiate])`
+### `(throttle action wait [immediate])`
 
 `(throttle)` helper will ensure that the action is only triggered once per given wait period. 
 The action will be triggered at the end of the wait period unless `immidate` is set to true.
@@ -97,7 +97,7 @@ The action will be triggered at the end of the wait period unless `immidate` is 
 <button {{action (throttle (action 'increment') 100)}}>+1</button>
 ```
 
-### `(debounce action wait [immidiate])`
+### `(debounce action wait [immediate])`
 
 `(debounce)` helper waits for specified time to pass before triggering callback. All intemidiate events are discarded.
 
