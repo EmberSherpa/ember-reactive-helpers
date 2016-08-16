@@ -105,8 +105,21 @@ describeComponent(
       expect(this.$('span').text()).to.equal('clicks: 0');
 
       run( () => this.$('button').click() );
-      
+
       expect(this.$('span').text()).to.equal('clicks: 1');
     });
+
+    it('can take arguments from a hash and recomputes when an argument changes', function(){
+      this.setProperties({ arr: [], x: 5, y: 3, z: -2 });
+      this.set('multiplyHash', function(arr, { x, y, z }) {
+        return x * y * z;
+      });
+      this.render(hbs`{{compute (r multiplyHash x=x y=y z=z)}}`);
+      expect(this.$().text()).to.equal('-30');
+
+      this.set('x', -7);
+      expect(this.$().text()).to.equal('42');
+    });
+
   }
 );

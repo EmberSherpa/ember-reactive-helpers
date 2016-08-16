@@ -8,8 +8,7 @@ const {
 } = Ember;
 
 export default Ember.Helper.extend({
-  compute([callable, ...curry]) {
-
+  compute([callable, ...curry], hash) {
     let helperInstance = null;
 
     if (typeOf(callable) === 'string') {
@@ -37,7 +36,7 @@ export default Ember.Helper.extend({
 
     return function(...args) {
       let curried = curry.concat(args);
-      return callable.call(helperInstance, curried);
+      return callable.call(helperInstance, curried, hash);
     };
   }
 });
