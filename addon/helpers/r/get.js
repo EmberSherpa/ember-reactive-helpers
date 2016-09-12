@@ -8,10 +8,10 @@ const {
 } = Ember;
 
 export function rGet([prop]/*, hash*/) {
-  assert(`r/get expects argument to be not be undefined`, !isNone(prop));
+  assert(`r/get expects argument to be defined`, !isNone(prop));
 
   return function (target) {
-    assert(`r/get ${prop} expexts object as argument`, typeOf(target) === 'object');
+    assert(`r/get ${prop} expects object as an argument`, typeOf(target) === 'object');
 
     return get(target, prop);
   };
