@@ -1,9 +1,5 @@
 import Ember from 'ember';
 
-const {
-  assert
-} = Ember;
-
 export function rParam([index = 0]/*, hash*/) {
   return function() {
     if ((arguments.length - 1) < index) {
