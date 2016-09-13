@@ -4,15 +4,14 @@ const {
   get,
   typeOf,
   assert,
-  isNone
+  isPresent
 } = Ember;
 
 export function rGet([prop]/*, hash*/) {
-  assert(`r/get expects argument to be defined`, !isNone(prop));
+  assert(`r/get expects a valid property name, you passed ${prop}`, isPresent(prop));
 
   return function (target) {
-    assert(`r/get ${prop} expects object as an argument`, typeOf(target) === 'object');
-
+    assert(`cannot call r/get with ${prop} on not an object`, typeOf(target) === 'object');
     return get(target, prop);
   };
 }
