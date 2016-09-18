@@ -96,22 +96,17 @@ without having it's output rendered.
 <button {{action (transition-to 'index')}}>Go to Index</button>
 ```
 
-### `(throttle action wait [immediate])`
+### `(keep-latest (action 'myAction') [within=<number>])`
 
-`(throttle)` helper will ensure that the action is only triggered once per given wait period. 
-The action will be triggered at the end of the wait period unless `immidate` is set to true.
-
-```hbs
-<button {{action (throttle (action 'increment') 100)}}>+1</button>
-```
-
-### `(debounce action wait [immediate])`
-
-`(debounce)` helper waits for specified time to pass before triggering callback. All intemidiate events are discarded.
+`(keep-latest)` helper wraps an action in an `ember-concurrency`. This task is configured to ensure that the last value always wins and 
+intermidiate values are dropped. Passing `within` argument will in throttle action to make sure that given interval passes before executing
+the latest task.
 
 ```hbs
-<button {{action (debounce (pipe (r 'add' 1) (action (mut count)) ) 100) count}}>+1</button>
+<button {{action (keep-latest (action 'myAction') within=1200)}}>Do something once every 1200 ms</button>
 ```
+
+
 
 ## Installation
 

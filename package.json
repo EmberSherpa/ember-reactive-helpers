@@ -51,6 +51,7 @@
     "ember-addon"
   ],
   "dependencies": {
+    "ember-concurrency": "0.7.8",    
     "ember-cli-babel": "^5.1.6"
   },
   "ember-addon": {
