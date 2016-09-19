@@ -1,0 +1,17 @@
+{{let results=(feed null (keep-latest (action 'search' query page) within=1000))}}
+
+<label>Keyword
+  <input type="text" value={{query}} oninput={{action "newQuery" value="target.value"}}>
+</label>
+
+Page {{page}} <button {{action (action (mut page)) (add page 1)}}>Next Page</button>
+
+<section class={{if (is-pending results) 'is-loading'}}>
+  <ul>
+    {{#each (get (stable results) 'items') as |item|}}
+      <li>{{item.title}}</li>
+    {{else}}
+      <li>No results</li>
+    {{/each}}
+  </ul>  
+</section>
