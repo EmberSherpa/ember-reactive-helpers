@@ -22,23 +22,23 @@
   "author": "Taras Mankovski <tarasm@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.2",
+    "broccoli-asset-rev": "^2.4.5",
     "ember-addon-genie": "0.0.6",
     "ember-ajax": "^2.5.1",
-    "ember-cli": "2.6.0-beta.3",
-    "ember-cli-app-version": "^1.0.0",
-    "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-es5-shim": "0.3.0",
+    "ember-cli": "2.9.0-beta.1",
+    "ember-cli-app-version": "^2.0.0",
+    "ember-cli-dependency-checker": "^1.3.0",
+    "ember-cli-htmlbars": "^1.0.10",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.3",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-jshint": "^1.0.4",
     "ember-cli-github-pages": "0.1.0",
-    "ember-cli-htmlbars": "^1.0.3",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.1",
-    "ember-cli-inject-live-reload": "^1.4.0",
-    "ember-cli-jshint": "^1.0.0",
     "ember-cli-mocha": "0.10.4",
-    "ember-cli-release": "1.0.0-beta.2",
+    "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.6.0-beta.1",
+    "ember-data": "^2.9.0-beta.1",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-let": "0.5.1",
@@ -46,7 +46,7 @@
     "ember-math-helpers": "1.2.1",
     "ember-promise-helpers": "1.0.2",
     "ember-resolver": "^2.0.3",
-    "loader.js": "^4.0.1"
+    "loader.js": "^4.0.10"
   },
   "keywords": [
     "ember-addon"
@@ -54,7 +54,7 @@
   "dependencies": {
     "ember-composable-helpers": "1.1.2",    
     "ember-concurrency": "0.7.8",
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.7"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",

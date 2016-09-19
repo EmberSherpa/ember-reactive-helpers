@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 export function rDebugger(params, hash) {
-  return function(value){
+  return function(value) {
     /** These are here to make sure that they show up in Chrome debugger after babel processes them */
-    params;
-    hash;
-    debugger;
+    params = params;
+    hash = hash;
+    debugger; // jshint ignore:line
     return value;
   };
 }
