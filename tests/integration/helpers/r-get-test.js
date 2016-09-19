@@ -28,17 +28,20 @@ describeComponent(
       expect(this.$().text()).to.equal('Barky');
     });
 
-    it('expects a valid property name to be passed in', function(){
-      let invalidProps = [
-        null, undefined, '', '   ', []
-      ];
+    [null, undefined, '', '   '].forEach((name) => {
+        it(`"${name}" is not a valid argument`, function() {
+          this.set('invalidPropName', name);
+          expect(() => {
+            this.render(hbs`{{compute (r/get invalidPropName) (hash cat="Wiskers")}}`);
+          }).to.throw(`Assertion Failed: r/get expects a valid property name, instead got ${name}`);
+        });
+    });
 
-      invalidProps.forEach((propName) => {
-        this.set('invalidPropName', propName);
-        expect(() => {
-          this.render(hbs`{{compute (r/get invalidPropName) (hash cat="Wiskers")}}`);
-        }).to.throw(`Assertion Failed: r/get expects a valid property name, you passed ${propName}`);
-      });
+    it('throws an error when received an array', function() {
+      this.set('propName', []);
+      expect(() => {
+        this.render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
+      }).to.throw(`Assertion Failed`);
     });
 
     it('expects a target of type object to be passed in', function(){

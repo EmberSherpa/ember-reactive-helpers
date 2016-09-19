@@ -10,6 +10,7 @@ Router.map(function() {
     this.route('list');
   });
   this.route('r');
+  this.route('ember-concurrency');
 });
 
 export default Router;
