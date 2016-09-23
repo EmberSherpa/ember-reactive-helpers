@@ -19,7 +19,9 @@ export default Ember.Helper.extend({
     this.set('within', within);
 
     return (...args) => {
-      return this.get('task').perform(action, ...args);
+      this.get('task').perform(action, ...args);
+      
+      return this.get('task');
     };
   }
 

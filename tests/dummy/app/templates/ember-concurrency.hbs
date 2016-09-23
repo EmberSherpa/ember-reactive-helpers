@@ -1,14 +1,14 @@
-{{let results=(feed null (keep-latest (action 'search' query page) within=1000))}}
+{{let search=(feed null (keep-latest (action 'search' query page) within=1000))}}
 
 <label>Keyword
   <input type="text" value={{query}} oninput={{action "newQuery" value="target.value"}}>
 </label>
 
-Page {{page}} <button {{action (action (mut page)) (add page 1)}}>Next Page</button>
+Page {{page}} <button {{action (mut page) (add page 1)}}>Next Page</button> {{if search.isRunning 'Loading ...'}}
 
-<section class={{if (is-pending results) 'is-loading'}}>
+<section class={{if search.isRunning 'is-loading'}}>
   <ul>
-    {{#each (get (stable results) 'items') as |item|}}
+    {{#each search.lastSuccessful.value.items as |item|}}
       <li>{{item.title}}</li>
     {{else}}
       <li>No results</li>
