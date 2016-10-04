@@ -57,11 +57,11 @@ describeComponent(
       expect(this.$().text()).to.equal('FOO');
     });
 
-    it('allows complex object to call recompute', function(){
+    it.only('allows complex object to call recompute', function(){
       let array = new A(['a', 'b', 'c']);
       this.set('array', array);
 
-      this.render(hbs`{{compute (r 'object-at' 1 array)}}`);
+      this.render(hbs`{{compute (r 'object-at' 1 (get array '[]'))}}`);
 
       expect(this.$().text()).to.equal('b');
 
