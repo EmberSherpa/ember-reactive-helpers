@@ -57,7 +57,7 @@ describeComponent(
       expect(this.$().text()).to.equal('FOO');
     });
 
-    it.only('allows complex object to call recompute', function(){
+    it('allows complex object to call recompute', function(){
       let array = new A(['a', 'b', 'c']);
       this.set('array', array);
 

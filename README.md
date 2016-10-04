@@ -38,14 +38,6 @@ You can use it in the template.
 <button {{action (pipe (r addNumbers 1) (action (mut count))) count}}>+1</button>
 ```
 
-### `(r/mut path)`
-`(r/mut)` helper is like Ember's `(mut)` helper but pipe friendly. It'll pipe through the received value after mutating the stream.
-Unlike `(mut)` it doesn't require you to wrap the mut in closure action `{{action (pipe (action (mut target))) value}}`
-
-```hbs
-{{compute (pipe (r/mut target) (r/param)) value}}
-```
-
 ### `(r/get propName)`
 
 `(r/get)` helper returns a function. When called, the function will return value taken from object that it receives as first argument at property propName.
