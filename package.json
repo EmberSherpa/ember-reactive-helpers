@@ -41,7 +41,7 @@
     "ember-data": "^2.9.0-beta.1",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-let": "0.5.1",
+    "ember-let": "0.5.2",
     "ember-load-initializers": "^0.5.1",
     "ember-math-helpers": "1.2.1",
     "ember-promise-helpers": "1.0.2",
