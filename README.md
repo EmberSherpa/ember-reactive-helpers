@@ -98,17 +98,6 @@ the latest task.
 <button {{action (keep-latest (action 'myAction') within=1200)}}>Do something once every 1200 ms</button>
 ```
 
-### `(stable promise [initial])`
-
-`(stable)` helper ensures that return value of a promise doesn't change while promise is inflight. This is useful when you're rendering
-resolved value of a promise that might change while the helper is rendered.
-
-```hbs
-{{#each (stable promise) as |item|}}
-  {{item}}
-{{/each}}
-```
-
 ## Installation
 
 ```
