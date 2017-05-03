@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import { expect } from 'chai';
 import {
   describeComponent,
@@ -40,7 +39,7 @@ describeComponent(
       this.set('argument', 'BAR');
       expect(echoCalled).to.equal(2);
       expect(lastMessage).to.equal('BAR');
-      expect(this.$().text()).to.equal('');      
+      expect(this.$().text()).to.equal('');
 
     });
 
@@ -74,7 +73,7 @@ describeComponent(
       expect(called).to.equal(2);
       expect(result).to.equal('second step: lets do it');
       expect(this.$().text()).to.equal('');
-      
+
     });
   }
 );

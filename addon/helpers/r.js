@@ -15,7 +15,8 @@ export default Ember.Helper.extend({
       assert('r helper name must not be empty', !isEmpty(callable));
 
       let owner = getOwner(this);
-      let helper = owner._lookupFactory(`helper:${callable}`);
+      let helper = owner.factoryFor(`helper:${callable}`);
+      helper = helper && helper.class;
 
       assert(`r helper must be able to resolve ${callable} to a helper`, helper);
 

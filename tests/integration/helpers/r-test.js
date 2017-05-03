@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 import {
@@ -61,7 +60,7 @@ describeComponent(
       let array = new A(['a', 'b', 'c']);
       this.set('array', array);
 
-      this.render(hbs`{{compute (r 'object-at' 1 array)}}`);
+      this.render(hbs`{{compute (r 'object-at' 1 (get array '[]'))}}`);
 
       expect(this.$().text()).to.equal('b');
 

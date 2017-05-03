@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import Ember from 'ember';
 import {
   describe,
@@ -23,7 +22,7 @@ describe('Acceptance: Helpers', function() {
 
   it('can cause a transition via helper', function() {
     visit('/transition-to');
-    
+
     andThen(function() {
       expect(currentPath()).to.equal('transition-to.index');
     });
@@ -39,7 +38,7 @@ describe('Acceptance: Helpers', function() {
 
   it('can apply query params via helper', function() {
     visit('/transition-to');
-    
+
     andThen(function() {
       expect(currentPath()).to.equal('transition-to.index');
     });

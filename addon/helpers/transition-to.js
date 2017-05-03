@@ -2,12 +2,13 @@ import Ember from 'ember';
 import QueryParams from '../-private/query-params';
 
 const {
-  getOwner,
-  A
+  getOwner
 } = Ember;
 
 export default Ember.Helper.extend({
-  compute([...params]) {
+  compute(params) {
+    params = params.slice();
+
     let router = getOwner(this).lookup('router:main');
     
     let queryParams = params[params.length - 1];
@@ -18,6 +19,6 @@ export default Ember.Helper.extend({
     return function(value) {
       router.transitionTo(...params);
       return value;
-    }
+    };
   }  
 });

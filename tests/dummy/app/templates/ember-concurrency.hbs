@@ -1,0 +1,21 @@
+<label>Keyword
+  <input type="text" value={{query}} oninput={{action
+    (pipe (action (mut query) value="target.value") (perform search 1000))}}>
+</label>
+{{query}}
+
+Page {{page}}
+<button onclick={{action (pipe (action (mut page) (add page 1)) (perform search 1000))}}>
+  Next Page
+</button>
+{{if search.isRunning 'Loading ...'}}
+
+<section class={{if search.isRunning 'is-loading'}}>
+  <ul>
+    {{#each search.lastSuccessful.value.items as |item|}}
+      <li>{{item.title}}</li>
+    {{else}}
+      <li>No results</li>
+    {{/each}}
+  </ul>
+</section>
