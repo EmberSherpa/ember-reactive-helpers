@@ -59,6 +59,13 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://EmberSherpa.github.io/ember-reactive-helpers"
+    "demoURL": "http://EmberSherpa.github.io/ember-reactive-helpers",
+    "after": [
+      "ember-cli-shims",
+      "ember-cli-mocha"
+    ],
+    "versionCompatibility": {
+      "ember": "2.12"
+    }
   }
 }
