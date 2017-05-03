@@ -88,16 +88,6 @@ without having its output rendered.
 <button {{action (transition-to 'index')}}>Go to Index</button>
 ```
 
-### `(keep-latest (action 'myAction') [within=<number>])`
-
-`(keep-latest)` helper wraps an action in an `ember-concurrency`. This task is configured to ensure that the last value always wins and 
-intermidiate values are dropped. Passing `within` argument will in throttle action to make sure that given interval passes before executing
-the latest task.
-
-```hbs
-<button {{action (keep-latest (action 'myAction') within=1200)}}>Do something once every 1200 ms</button>
-```
-
 ## Installation
 
 ```

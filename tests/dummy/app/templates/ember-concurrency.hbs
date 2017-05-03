@@ -1,10 +1,14 @@
-{{let search=(feed null (keep-latest (action 'search' query page) within=1000))}}
-
 <label>Keyword
-  <input type="text" value={{query}} oninput={{action "newQuery" value="target.value"}}>
+  <input type="text" value={{query}} oninput={{action
+    (pipe (action (mut query) value="target.value") (perform search 1000))}}>
 </label>
+{{query}}
 
-Page {{page}} <button {{action (mut page) (add page 1)}}>Next Page</button> {{if search.isRunning 'Loading ...'}}
+Page {{page}}
+<button onclick={{action (pipe (action (mut page) (add page 1)) (perform search 1000))}}>
+  Next Page
+</button>
+{{if search.isRunning 'Loading ...'}}
 
 <section class={{if search.isRunning 'is-loading'}}>
   <ul>
@@ -13,5 +17,5 @@ Page {{page}} <button {{action (mut page) (add page 1)}}>Next Page</button> {{if
     {{else}}
       <li>No results</li>
     {{/each}}
-  </ul>  
+  </ul>
 </section>
