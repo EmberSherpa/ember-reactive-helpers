@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import { expect } from 'chai';
 import { describeComponent, it } from 'ember-mocha';
 
@@ -31,7 +30,7 @@ describeComponent('KeepLatest', 'Integration: KeepLatestHelper', { integration: 
         let deferred = deferWithValue(value);
 
         ops.push(deferred);
-        
+
         let { promise } = deferred;
 
         return promise;
@@ -52,8 +51,8 @@ describeComponent('KeepLatest', 'Integration: KeepLatestHelper', { integration: 
       // foo was set to result
       expect(this.$().text()).to.equal('foo');
 
-      run(() => { 
-        this.set('value', 'bar'); 
+      run(() => {
+        this.set('value', 'bar');
         this.$('button').click();
       });
 
@@ -108,7 +107,7 @@ describeComponent('KeepLatest', 'Integration: KeepLatestHelper', { integration: 
         this.$('button').click();
         this.$('button').click();
         this.$('button').click();
-        this.$('button').click();        
+        this.$('button').click();
       });
 
       later(()=>{});

@@ -1,4 +1,3 @@
-/* jshint expr:true */
 import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 import {
