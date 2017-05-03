@@ -6,6 +6,9 @@ import {
 } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
+// NOTE: As of Ember 2.11.1, chai can't handle the thrown errors due to a change in error event dispatching
+// see https://github.com/emberjs/ember.js/issues/15013
+
 describeComponent(
   'r/get',
   'Integration: r/get',
