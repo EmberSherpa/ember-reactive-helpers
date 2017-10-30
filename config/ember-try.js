@@ -1,5 +1,4 @@
-/*jshint node:true*/
-
+/* eslint-env node */
 module.exports = {
   useVersionCompatibility: true,
   scenarios: [{
