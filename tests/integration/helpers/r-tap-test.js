@@ -1,14 +1,7 @@
-import { expect } from 'chai';
-import {
-  describeComponent,
-  it
-} from 'ember-mocha';
+import {run} from '@ember/runloop';
+import {expect} from 'chai';
+import {describeComponent, it} from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
-
-const {
-  run
-} = Ember;
 
 describeComponent(
   'r/tap',
@@ -16,14 +9,14 @@ describeComponent(
   {
     integration: true
   },
-  function() {
-    it('removes event object from arguments', function() {
+  function () {
+    it('removes event object from arguments', function () {
       this.set('value', null);
       this.render(hbs`{{value}}<button {{action (pipe (r/tap 'hello world') (action (mut value)))}}></button>`);
       expect(this.$()).to.have.length(1);
       expect(this.$().text()).to.equal('');
 
-      run( () => this.$('button').click() );
+      run(() => this.$('button').click());
 
       expect(this.$()).to.have.length(1);
       expect(this.$().text()).to.equal('hello world');

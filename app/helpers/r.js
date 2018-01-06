@@ -1,1 +1,1 @@
-export { default, helper } from 'ember-reactive-helpers/helpers/r';
+export {default, helper} from 'ember-reactive-helpers/helpers/r';

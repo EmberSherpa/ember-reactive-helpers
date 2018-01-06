@@ -1,12 +1,9 @@
-import Ember from 'ember';
-import {task, timeout} from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
+import { task, timeout } from 'ember-concurrency';
 
-const {
-  inject
-} = Ember;
-
-export default Ember.Controller.extend({
-  ajax: inject.service(),
+export default Controller.extend({
+  ajax: service(),
 
   query: '',
   page: 1,

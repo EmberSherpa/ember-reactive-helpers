@@ -1,1 +1,1 @@
-export { default, feed } from 'ember-reactive-helpers/helpers/feed';
+export {default, feed} from 'ember-reactive-helpers/helpers/feed';

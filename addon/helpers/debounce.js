@@ -1,15 +1,13 @@
-import Ember from 'ember';
-
-const {
-  run: { debounce },
-  assert
-} = Ember;
+import {helper} from '@ember/component/helper';
+import {debounce} from '@ember/runloop';
+import {assert} from '@ember/debug';
 
 export function debounceHelper([callback, wait, immediate = false]/*, hash*/) {
   assert(`wait is specified for debounce helper`, wait);
 
-  return function(value) {
+  return function (value) {
     return debounce(null, callback, value, wait, immediate);
   };
 }
-export default Ember.Helper.helper(debounceHelper);
+
+export default helper(debounceHelper);

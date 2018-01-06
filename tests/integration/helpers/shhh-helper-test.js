@@ -1,10 +1,7 @@
-import { expect } from 'chai';
-import {
-  describeComponent,
-  it
-} from 'ember-mocha';
+import {helper} from '@ember/component/helper';
+import {expect} from 'chai';
+import {describeComponent, it} from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 
 describeComponent(
   'shhh-helper',
@@ -12,17 +9,17 @@ describeComponent(
   {
     integration: true
   },
-  function() {
-    it('renders', function() {
+  function () {
+    it('renders', function () {
       this.render(hbs`{{shhh-helper}}`);
       expect(this.$()).to.have.length(1);
     });
 
-    it('prevents output from being rendered', function(){
+    it('prevents output from being rendered', function () {
 
       let echoCalled = 0;
       let lastMessage;
-      this.register('helper:echo', Ember.Helper.helper(function([value]){
+      this.register('helper:echo', helper(function ([value]) {
         echoCalled++;
         lastMessage = value;
         return value;
@@ -43,18 +40,18 @@ describeComponent(
 
     });
 
-    it('allows callback to be executed with compute', function(){
+    it('allows callback to be executed with compute', function () {
 
       let called = 0;
       let result;
 
-      this.set('firstStep', function(value){
+      this.set('firstStep', function (value) {
         called++;
         result = `first step: ${value}`;
         return value;
       });
 
-      this.set('secondStep', function(value){
+      this.set('secondStep', function (value) {
         called++;
         result = `second step: ${value}`;
         return value;

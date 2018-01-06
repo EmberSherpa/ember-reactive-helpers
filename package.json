@@ -10,7 +10,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:each",
-    "release": "ember release"
+    "release": "ember release",
+    "lint:js": "eslint ./*.js addon app tests"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "ember-cli": "^2.16.2",
     "ember-cli-chai": "^0.4.3",
     "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.2.3",
     "ember-cli-github-pages": "0.1.2",
     "ember-cli-htmlbars": "^2.0.3",
     "ember-cli-htmlbars-inline-precompile": "^1.0.2",
@@ -44,6 +46,7 @@
     "ember-promise-helpers": "1.0.3",
     "ember-resolver": "^4.5.0",
     "ember-source": "~2.16.1",
+    "eslint-plugin-ember": "^5.0.3",
     "loader.js": "^4.2.3"
   },
   "keywords": [

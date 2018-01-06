@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import {helper} from '@ember/component/helper';
 
 export function rParam([index = 0]/*, hash*/) {
-  return function() {
+  return function () {
     if ((arguments.length - 1) < index) {
       return undefined;
     }
@@ -9,4 +9,4 @@ export function rParam([index = 0]/*, hash*/) {
   };
 }
 
-export default Ember.Helper.helper(rParam);
+export default helper(rParam);

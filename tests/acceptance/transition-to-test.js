@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import $ from 'jquery';
 import {
   describe,
   it,
@@ -31,7 +31,7 @@ describe('Acceptance: Helpers', function() {
 
     andThen(function() {
       expect(currentPath()).to.equal('transition-to.list');
-      expect(Ember.$('h2:contains(Helpers List)').length).to.equal(1);
+      expect($('h2:contains(Helpers List)').length).to.equal(1);
     });
 
   });

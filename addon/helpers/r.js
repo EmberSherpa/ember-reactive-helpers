@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
+import {getOwner} from '@ember/application';
+import {isEmpty, typeOf} from '@ember/utils';
+import {assert} from '@ember/debug';
 
-const {
-  getOwner,
-  typeOf,
-  isEmpty,
-  assert
-} = Ember;
-
-export default Ember.Helper.extend({
+export default Helper.extend({
   compute([callable, ...curry], hash) {
     let helperInstance = null;
 
@@ -33,7 +29,7 @@ export default Ember.Helper.extend({
 
     assert('r helper must receive a callable function', callable.call);
 
-    return function(...args) {
+    return function (...args) {
       let curried = curry.concat(args);
       return callable.call(helperInstance, curried, hash);
     };
