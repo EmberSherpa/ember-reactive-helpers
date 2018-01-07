@@ -18,7 +18,7 @@
     "url": "git@github.com:EmberSherpa/ember-reactive-helpers.git"
   },
   "engines": {
-    "node": ">= 4"
+    "node": "^4.5 || 6.* || >= 7.*"
   },
   "author": "Taras Mankovski <tarasm@gmail.com>",
   "license": "MIT",
