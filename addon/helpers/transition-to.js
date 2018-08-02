@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import QueryParams from '../-private/query-params';
 
 const {
   getOwner
@@ -12,7 +11,7 @@ export default Ember.Helper.extend({
     let router = getOwner(this).lookup('router:main');
     
     let queryParams = params[params.length - 1];
-    if (queryParams instanceof QueryParams) {
+    if (queryParams && queryParams.isQueryParams) {
       params[params.length - 1] = { queryParams: queryParams.values };
     }
 
