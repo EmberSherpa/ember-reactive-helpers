@@ -1,11 +1,7 @@
-import Ember from 'ember';
-
-const {
-  get,
-  typeOf,
-  assert,
-  isPresent
-} = Ember;
+import { helper as buildHelper } from '@ember/component/helper';
+import { get } from '@ember/object';
+import { assert } from '@ember/debug';
+import { isPresent, typeOf } from '@ember/utils';
 
 export function rGet([prop]/*, hash*/) {
   assert(`r/get expects a valid property name, instead got ${prop}`, isPresent(prop));
@@ -16,4 +12,4 @@ export function rGet([prop]/*, hash*/) {
   };
 }
 
-export default Ember.Helper.helper(rGet);
+export default buildHelper(rGet);

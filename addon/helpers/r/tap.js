@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 
 export function rTap([value]/*, hash*/) {
   return function() {
@@ -6,4 +6,4 @@ export function rTap([value]/*, hash*/) {
   };
 }
 
-export default Ember.Helper.helper(rTap);
+export default buildHelper(rTap);

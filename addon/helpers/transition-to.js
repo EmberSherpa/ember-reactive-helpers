@@ -1,10 +1,7 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
+import { getOwner } from '@ember/application';
 
-const {
-  getOwner
-} = Ember;
-
-export default Ember.Helper.extend({
+export default Helper.extend({
   compute(params) {
     params = params.slice();
 

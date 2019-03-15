@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
+import { getOwner } from '@ember/application';
+import { isEmpty, typeOf } from '@ember/utils';
+import { assert } from '@ember/debug';
 
-const {
-  getOwner,
-  typeOf,
-  isEmpty,
-  assert
-} = Ember;
-
-export default Ember.Helper.extend({
+export default Helper.extend({
   compute([callable, ...curry], hash) {
     let helperInstance = null;
 

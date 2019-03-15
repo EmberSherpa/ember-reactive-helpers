@@ -1,6 +1,22 @@
 /* jshint node:true */
 
-var runCommand = require('ember-addon-genie/lib/utils/run-command');
+var execSync = require('child_process').execSync;
+
+function runCommand(command, log) {
+  log = (log === undefined) ? false : log;
+
+  if(log) {
+    console.log('running: ' + command); // eslint-disable-line
+  }
+
+  var output = execSync(command, { encoding: 'utf8' }).toString().trim();
+
+  if(log) {
+    console.log(output); // eslint-disable-line
+  }
+
+  return output;
+}
 
 module.exports = {
   init: function() {

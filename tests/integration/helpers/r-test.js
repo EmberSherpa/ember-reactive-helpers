@@ -1,3 +1,6 @@
+import { run } from '@ember/runloop';
+import Helper from '@ember/component/helper';
+import { A } from '@ember/array';
 import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 import {
@@ -5,13 +8,6 @@ import {
   it
 } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
-
-const {
-  run,
-  Helper,
-  A
-} = Ember;
 
 import registerHelper from '../../helpers/register-helper';
 

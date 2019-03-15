@@ -1,12 +1,8 @@
-import Ember from 'ember';
-import {task, timeout} from 'ember-concurrency';
+import fetch from 'fetch';
+import Controller from '@ember/controller';
+import { task, timeout } from 'ember-concurrency';
 
-const {
-  inject
-} = Ember;
-
-export default Ember.Controller.extend({
-  ajax: inject.service(),
+export default Controller.extend({
 
   query: '',
   page: 1,
@@ -17,8 +13,10 @@ export default Ember.Controller.extend({
     }
 
     let {query, page} = this.getProperties("query", "page");
-    let url = `https://api.github.com/search/issues?repo:emberjs/ember.js&q=${encodeURIComponent(
-      query)}&page=${page}`;
-    return this.get('ajax').request(url);
+    let queryString = `${encodeURIComponent(query)}&page=${page}`
+    let url = `https://api.github.com/search/issues?repo:emberjs/ember.js&q=${queryString}`;
+    
+    return fetch(url).then((res) => res.json());
   }).keepLatest()
 });
+ 

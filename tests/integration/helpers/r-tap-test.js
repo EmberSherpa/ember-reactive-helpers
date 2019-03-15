@@ -1,14 +1,10 @@
+import { run } from '@ember/runloop';
 import { expect } from 'chai';
 import {
   describeComponent,
   it
 } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
-
-const {
-  run
-} = Ember;
 
 describeComponent(
   'r/tap',

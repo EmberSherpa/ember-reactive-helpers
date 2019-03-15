@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 
 export function rDebugger(params, hash) {
   return function(value) {
@@ -10,4 +10,4 @@ export function rDebugger(params, hash) {
   };
 }
 
-export default Ember.Helper.helper(rDebugger);
+export default buildHelper(rDebugger);

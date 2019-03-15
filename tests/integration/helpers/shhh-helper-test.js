@@ -1,10 +1,10 @@
+import { helper as buildHelper } from '@ember/component/helper';
 import { expect } from 'chai';
 import {
   describeComponent,
   it
 } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 
 describeComponent(
   'shhh-helper',
@@ -22,7 +22,7 @@ describeComponent(
 
       let echoCalled = 0;
       let lastMessage;
-      this.register('helper:echo', Ember.Helper.helper(function([value]){
+      this.register('helper:echo', buildHelper(function([value]){
         echoCalled++;
         lastMessage = value;
         return value;

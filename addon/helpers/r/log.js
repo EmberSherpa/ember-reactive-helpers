@@ -1,14 +1,10 @@
-import Ember from 'ember';
-
-const {
-  Logger: { log }
-} = Ember;
+import { helper as buildHelper } from '@ember/component/helper';
 
 export function rLog(params) {
   return function(value) {
-    log(...params, value);
+    console.log(...params, value); // eslint-disable-line
     return value;
   };
 }
 
-export default Ember.Helper.helper(rLog);
+export default buildHelper(rLog);
