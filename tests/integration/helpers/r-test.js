@@ -1,32 +1,27 @@
 import { run } from '@ember/runloop';
-import Helper from '@ember/component/helper';
+import Helper, { helper as buildHelper } from '@ember/component/helper';
 import { A } from '@ember/array';
 import { expect } from 'chai';
-import { beforeEach } from 'mocha';
-import {
-  describeComponent,
-  it
-} from 'ember-mocha';
+import { describe, it, beforeEach } from 'mocha';
 import hbs from 'htmlbars-inline-precompile';
+import { setupRenderingTest } from 'ember-mocha';
+import { render } from '@ember/test-helpers';
 
 import registerHelper from '../../helpers/register-helper';
 
-describeComponent(
-  'r',
-  'Integration: r',
-  {
-    integration: true
-  },
-  function() {
+describe('Integration | Helper | r', function() {
+    setupRenderingTest();
+
     beforeEach(function(){
       registerHelper(this);
     });
+
     it('supports simple helpers', function() {
-      this.registerHelper('uppercase', Helper.helper(function ([str]) {
+      this.registerHelper('uppercase', buildHelper(function ([str]) {
         return str.toUpperCase();
       }));
 
-      this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
+      render(hbs`{{compute (r 'uppercase') 'foo'}}`);
       expect(this.$().text()).to.equal('FOO');
     });
     it('supports complex helpers', function(){
@@ -36,7 +31,7 @@ describeComponent(
         }
       }));
 
-      this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
+      render(hbs`{{compute (r 'uppercase') 'foo'}}`);
       expect(this.$().text()).to.equal('FOO');
     });
 
@@ -48,15 +43,15 @@ describeComponent(
         }
       }));
 
-      this.render(hbs`{{compute (r 'uppercase') 'foo'}}`);
+      render(hbs`{{compute (r 'uppercase') 'foo'}}`);
       expect(this.$().text()).to.equal('FOO');
     });
 
     it('allows complex object to call recompute', function(){
-      let array = new A(['a', 'b', 'c']);
+      let array = A(['a', 'b', 'c']);
       this.set('array', array);
 
-      this.render(hbs`{{compute (r 'object-at' 1 (get array '[]'))}}`);
+      render(hbs`{{compute (r 'object-at' 1 (get array '[]'))}}`);
 
       expect(this.$().text()).to.equal('b');
 
@@ -66,21 +61,21 @@ describeComponent(
     });
 
     it('curries passed in arguments', function(){
-      this.render(hbs`{{compute (r 'add' 5) 10}}`);
+      render(hbs`{{compute (r 'add' 5) 10}}`);
       expect(this.$().text()).to.equal('15');
     });
     it('can receive a function', function(){
       this.set('sum', function([a, b]){
         return a + b;
       });
-      this.render(hbs`{{compute (r sum 10) 100}}`);
+      render(hbs`{{compute (r sum 10) 100}}`);
       expect(this.$().text()).to.equal('110');
     });
     it('can re-evaluates when function changes', function(){
       this.set('operation', function sum([a, b]){
         return a + b;
       });
-      this.render(hbs`{{compute (r operation 10) 100}}`);
+      render(hbs`{{compute (r operation 10) 100}}`);
       expect(this.$().text()).to.equal('110');
 
       this.set('operation', function subtract([a, b]){
@@ -91,7 +86,7 @@ describeComponent(
     });
     it('can be used in a pipe', function(){
       this.set('count', 0);
-      this.render(hbs`
+      render(hbs`
         {{#with (r 'add' 1) as |increment|}}
           <span>clicks: {{count}}</span>
           <button {{action (pipe increment (action (mut count))) count}}>+1</button>
@@ -109,7 +104,7 @@ describeComponent(
       this.set('multiplyHash', function(arr, { x, y, z }) {
         return x * y * z;
       });
-      this.render(hbs`{{compute (r multiplyHash x=x y=y z=z)}}`);
+      render(hbs`{{compute (r multiplyHash x=x y=y z=z)}}`);
       expect(this.$().text()).to.equal('-30');
 
       this.set('x', -7);

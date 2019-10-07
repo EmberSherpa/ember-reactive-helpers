@@ -13,15 +13,13 @@ before_install:
   - 'export DISPLAY=:99.0'
   - sh -e /etc/init.d/xvfb start
   - npm config set spin false
-  - npm install -g bower phantomjs-prebuilt
-  - bower --version
+  - npm install -g phantomjs-prebuilt
   - phantomjs --version
 before_script:
   - git config --global user.email "taras@embersherpa.com"
   - git config --global user.name "Taras Mankovski"
 install:
   - npm install
-  - bower install
 script:
   - 'COVERAGE=true node_modules/.bin/ember try:each --skip-cleanup'
 addons:

@@ -1,20 +1,20 @@
-import { helper as buildHelper } from '@ember/component/helper';
 import { expect } from 'chai';
-import {
-  describeComponent,
-  it
-} from 'ember-mocha';
+import { describe, it, beforeEach } from 'mocha';
 import hbs from 'htmlbars-inline-precompile';
+import { setupRenderingTest } from 'ember-mocha';
+import { helper as buildHelper } from '@ember/component/helper';
+import { render } from '@ember/test-helpers';
+import registerHelper from '../../helpers/register-helper';
 
-describeComponent(
-  'shhh-helper',
-  'Integration: ShhhHelper',
-  {
-    integration: true
-  },
-  function() {
+describe('Integration | Helper | r/shhh', function() {
+    setupRenderingTest();
+
+    beforeEach(function(){
+      registerHelper(this);
+    });
+    
     it('renders', function() {
-      this.render(hbs`{{shhh-helper}}`);
+      render(hbs`{{shhh-helper}}`);
       expect(this.$()).to.have.length(1);
     });
 
@@ -22,7 +22,7 @@ describeComponent(
 
       let echoCalled = 0;
       let lastMessage;
-      this.register('helper:echo', buildHelper(function([value]){
+      this.registerHelper('echo', buildHelper(function([value]){
         echoCalled++;
         lastMessage = value;
         return value;
@@ -30,7 +30,7 @@ describeComponent(
 
       this.set('argument', 'FOO');
 
-      this.render(hbs`{{shhh (echo argument)}}`);
+      render(hbs`{{shhh (echo argument)}}`);
 
       expect(echoCalled).to.equal(1);
       expect(lastMessage).to.equal('FOO');
@@ -62,7 +62,7 @@ describeComponent(
 
       this.set('takeFirst', true);
 
-      this.render(hbs`{{shhh (compute (if takeFirst firstStep secondStep) 'lets do it')}}`);
+      render(hbs`{{shhh (compute (if takeFirst firstStep secondStep) 'lets do it')}}`);
 
       expect(called).to.equal(1);
       expect(result).to.equal('first step: lets do it');

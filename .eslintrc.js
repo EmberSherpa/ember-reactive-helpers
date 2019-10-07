@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 2018,
     sourceType: 'module'
   },
   plugins: [
@@ -21,13 +22,19 @@ module.exports = {
     {
       files: [
         '.eslintrc.js',
+        '.ember-cli.js',
+        '.prettierrc.js',
+        'postcss.config.js',
         '.template-lintrc.js',
+        'stylelint.config.js',
         'ember-cli-build.js',
-        'index.js',
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
-        'tests/dummy/config/**/*.js'
+        'lib/*/index.js',
+        'server/**/*.js',
+        'functions/**/*.js',
+        'app/tailwind/*.js'
       ],
       excludedFiles: [
         'addon/**',
@@ -36,8 +43,7 @@ module.exports = {
         'tests/dummy/app/**'
       ],
       parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2015
+        sourceType: 'script'
       },
       env: {
         browser: false,
@@ -46,6 +52,8 @@ module.exports = {
       plugins: ['node'],
       rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
         // add your custom rules and overrides for node files here
+        'node/no-unpublished-require': 'off',
+        'node/no-extraneous-require': 'off'
       })
     }
   ]
