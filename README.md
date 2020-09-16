@@ -103,4 +103,13 @@ ember install ember-reactive-helpers
 ## Looking for help?
 If you encounter a bug [please open an issue on GitHub](http://github.com/EmberSherpa/ember-reactive-helpers/issues).
 
-## Usage
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
