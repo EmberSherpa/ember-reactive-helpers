@@ -1,9 +1,9 @@
 <h1>ember-reactive-helpers</h1>
 
 <div class="nav">
-  <button onclick={{action (transition-to "r")}}>R</button>
-  <button onclick={{action (transition-to "transition-to")}}>Transition To</button>
-  <button onclick={{action (transition-to "ember-concurrency")}}>Concurrency</button>
+  <button type="button" {{on "click" (transition-to "r")}}>R</button>
+  <button type="button" {{on "click" (transition-to "transition-to")}}>Transition To</button>
+  <button type="button" {{on "click" (transition-to "ember-concurrency")}}>Concurrency</button>
 </div>
 
 {{outlet}}

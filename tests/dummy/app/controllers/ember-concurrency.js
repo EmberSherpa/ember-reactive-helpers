@@ -1,14 +1,12 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  ajax: service(),
+export default class extends Controller {
+  @tracked query = '';
+  @tracked page = 1;
 
-  query: '',
-  page: 1,
-
-  search: task(function* (throttle = 0) {
+  @(task(function* (throttle = 0) {
     if (throttle) {
       yield timeout(throttle);
     }
@@ -17,6 +15,14 @@ export default Controller.extend({
     let url = `https://api.github.com/search/issues?repo:emberjs/ember.js&q=${encodeURIComponent(
       query
     )}&page=${page}`;
-    return this.get('ajax').request(url);
-  }).keepLatest()
-});
+
+    const response = yield fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: 'token 6ebfe062b56196971251caa0c87c032bf73a57e5'
+      }
+    });
+    return yield response.json();
+  }).drop())
+  search;
+}

@@ -19,23 +19,26 @@ to process data on the way up in the Data Down Actions Up cycle. The `r` helper 
 Returns a function for a given helper and curry arguments to it.
 
 ```hbs
-<input value={{value}} oninput={{action (pipe (r 'dasherize') (action (mut value))) value="target.value"}}
+<Input @value={{this.value}}
+    @input={{fn (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
+/>
 ```
 
 `r` helper accepts functions as helpers. For example, let's say you have a method on the context called `addNumbers`
 
 ```js
-export default Ember.Component.extend({
+export default class extends Component {
   addNumbers([a, b]) {
     return a + b;
   }
-});
+}
 ```
 
 You can use it in the template.
 
 ```hbs
-<button {{action (pipe (r addNumbers 1) (action (mut count))) count}}>+1</button>
+<button type="button" {{on "click" (pipe (r this.addNumbers 1) (fn (mut this.count)))}}>+1</button>
+<div>{{this.count}}</div>
 ```
 
 ### `(r/get propName)`

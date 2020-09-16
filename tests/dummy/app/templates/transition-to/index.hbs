@@ -1,4 +1,4 @@
 <h2>Helpers</h2>
-<button id="helpers" {{action (transition-to "transition-to.list")}}>Go to Helpers</button>
-<button id="show" {{action (transition-to "transition-to.index" (query-params foo="bar"))}}>Show Query Params</button>
-<button id="hide" {{action (transition-to "transition-to.index" (query-params foo=""))}}>Hide Query Params</button>
+<button type="button" id="helpers" {{on "click" (transition-to "transition-to.list")}}>Go to Helpers</button>
+<button type="button" id="show" {{on "click" (transition-to "transition-to.index" (query-params foo="bar"))}}>Show Query Params</button>
+<button type="button" id="hide" {{on "click" (transition-to "transition-to.index" (query-params foo=undefined))}}>Hide Query Params</button>

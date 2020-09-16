@@ -1,3 +1,5 @@
 <h2>Dasherize input</h2>
-<span id="result">{{value}}</span>
-<input id="dasherize" type="text" value={{value}} oninput={{action (pipe (r "dasherize") (action (mut value))) value="target.value"}}>
+<span id="result">{{this.value}}</span>
+<Input id="dasherize" @type="text" @value={{this.value}}
+        @input={{fn (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
+/>

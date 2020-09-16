@@ -1,19 +1,20 @@
 <label>
   Keyword
-  <input type="text" value={{query}} oninput={{action
-    (pipe (action (mut query) value="target.value") (perform search 1000))}}>
+  <Input @type="text" @value={{this.query}}
+    {{on "keyup" (fn (perform this.search 1000))}}
+  />
 </label>
-{{query}}
+{{this.query}}
 
-Page {{page}}
-<button onclick={{action (pipe (action (mut page) (add page 1)) (perform search 1000))}}>
+Page {{this.page}}
+<button type="button" {{on "click" (pipe (fn (mut this.page) (add this.page 1)) (perform this.search 1000))}}>
   Next Page
 </button>
-{{if search.isRunning "Loading ..."}}
+{{if this.search.isRunning "Loading ..."}}
 
-<section class={{if search.isRunning "is-loading"}}>
+<section class={{if this.search.isRunning "is-loading"}}>
   <ul>
-    {{#each search.lastSuccessful.value.items as |item|}}
+    {{#each this.search.lastSuccessful.value.items as |item|}}
       <li>{{item.title}}</li>
     {{else}}
       <li>No results</li>
