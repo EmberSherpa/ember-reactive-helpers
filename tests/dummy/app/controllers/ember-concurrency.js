@@ -11,7 +11,7 @@ export default class extends Controller {
       yield timeout(throttle);
     }
 
-    let { query, page } = this.getProperties('query', 'page');
+    let { query, page } = this;
     let url = `https://api.github.com/search/issues?repo:emberjs/ember.js&q=${encodeURIComponent(
       query
     )}&page=${page}`;
