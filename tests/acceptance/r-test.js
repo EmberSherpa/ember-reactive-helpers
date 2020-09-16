@@ -1,32 +1,14 @@
-import {
-  describe,
-  it,
-  beforeEach,
-  afterEach
-} from 'mocha';
-import { expect } from 'chai';
-import startApp from '../helpers/start-app';
-import destroyApp from '../helpers/destroy-app';
+import { module, test } from 'qunit';
+import { visit, currentURL, fillIn, find } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-describe('Acceptance: R', function() {
-  let application;
+module('Acceptance | r', function (hooks) {
+  setupApplicationTest(hooks);
 
-  beforeEach(function() {
-    application = startApp();
-  });
-
-  afterEach(function() {
-    destroyApp(application);
-  });
-
-  it('can visit /r', function() {
-    visit('/r');
-
-    fillIn('#dasherize', 'new value');
-    andThen(function() {
-      expect(currentPath()).to.equal('r');
-
-      expect($('#result').text()).to.equal('new-value');
-    });
+  test('can visit /r', async function (assert) {
+    await visit('/r');
+    assert.equal(currentURL(), '/r');
+    await fillIn('#dasherize', 'new value');
+    assert.equal(find('#result').textContent, 'new-value');
   });
 });

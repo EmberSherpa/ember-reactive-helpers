@@ -1,32 +1,16 @@
-import { expect } from 'chai';
-import {
-  describeComponent,
-  it
-} from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { click, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 
-const {
-  run
-} = Ember;
+module('Integration | r/tap', function (hooks) {
+  setupRenderingTest(hooks);
 
-describeComponent(
-  'r/tap',
-  'Integration: r/tap',
-  {
-    integration: true
-  },
-  function() {
-    it('removes event object from arguments', function() {
-      this.set('value', null);
-      this.render(hbs`{{value}}<button {{action (pipe (r/tap 'hello world') (action (mut value)))}}></button>`);
-      expect(this.$()).to.have.length(1);
-      expect(this.$().text()).to.equal('');
-
-      run( () => this.$('button').click() );
-
-      expect(this.$()).to.have.length(1);
-      expect(this.$().text()).to.equal('hello world');
-    });
-  }
-);
+  test('removes event object from arguments', async function (assert) {
+    this.set('value', null);
+    await render(hbs`{{value}}<button {{action (pipe (r/tap 'hello world') (action (mut value)))}}></button>`);
+    assert.equal(this.element.textContent.trim(), '');
+    await click('button');
+    assert.equal(this.element.textContent.trim(), 'hello world');
+  });
+});

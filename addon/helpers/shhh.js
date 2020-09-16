@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 
 // supresses output of whatever is passed into it
-export default Ember.Helper.helper(function shhh() {});
+export default buildHelper(function shhh() {});
