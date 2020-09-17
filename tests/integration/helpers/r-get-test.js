@@ -1,10 +1,15 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, setupOnerror } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | r/get', function (hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
+    // reset Ember.onerror
+    setupOnerror();
+  });
 
   test('renders value', async function (assert) {
     await render(hbs`{{compute (r/get 'value') (hash value="foo")}}`);
@@ -20,36 +25,34 @@ module('Integration | r/get', function (hooks) {
     assert.equal(this.element.textContent.trim(), 'Barky');
   });
 
-  // skipping the following tests until we can get a newer version of ember/test-helpers
-  // which includes a setupOnerror utility
-  // trying to override Ember.onerror was fraught with problems
+  for (const prop of [null, undefined, '', '   ']) {
+    test('throws an error when received null', async function (assert) {
+      assert.expect(1);
+      setupOnerror(function (error) {
+        assert.equal(
+          error.message,
+          `Assertion Failed: r/get expects a valid property name, instead got ${prop}`
+        );
+      });
+      this.set('propName', prop);
+      await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
+    });
+  }
 
-  skip('throws an error when received null', async function () {
-    this.set('propName', null);
-    await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
-  });
-
-  skip('throws an error when received undefined', async function () {
-    this.set('propName', undefined);
-    await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
-  });
-
-  skip('throws an error when received empty string', async function () {
-    this.set('propName', '');
-    await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
-  });
-
-  skip('throws an error when received blank string', async function () {
-    this.set('propName', '   ');
-    await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
-  });
-
-  skip('throws an error when received an array', async function () {
+  test('throws an error when received an array', async function (assert) {
+    assert.expect(1);
+    setupOnerror(function (error) {
+      assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got `);
+    });
     this.set('propName', []);
     await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
   });
 
-  skip('expects a target of type object to be passed in', async function () {
+  test('expects a target of type object to be passed in', async function (assert) {
+    assert.expect(1);
+    setupOnerror(function (error) {
+      assert.equal(error.message, `Assertion Failed: cannot call r/get with someKey on not an object`);
+    });
     this.set('invalidObject', 1);
     await render(hbs`{{compute (r/get 'someKey') invalidObject}}`);
   });
