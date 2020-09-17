@@ -1,56 +1,24 @@
-import Ember from 'ember';
-import {
-  describe,
-  it,
-  beforeEach,
-  afterEach
-} from 'mocha';
-import { expect } from 'chai';
-import startApp from '../helpers/start-app';
-import destroyApp from '../helpers/destroy-app';
+import { module, test } from 'qunit';
+import { click, currentRouteName, currentURL, visit, findAll } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-describe('Acceptance: Helpers', function() {
-  let application;
+module('Acceptance | transition-to', function (hooks) {
+  setupApplicationTest(hooks);
 
-  beforeEach(function() {
-    application = startApp();
+  test('can cause a transition via helper', async function (assert) {
+    await visit('/transition-to');
+    assert.equal(currentRouteName(), 'transition-to.index');
+
+    await click(`button#helpers`);
+    assert.equal(currentRouteName(), 'transition-to.list');
+    assert.equal(findAll('h2#list').length, 1);
   });
 
-  afterEach(function() {
-    destroyApp(application);
+  test('can apply query params via helper', async function (assert) {
+    await visit('/transition-to');
+    assert.equal(currentRouteName(), 'transition-to.index');
+
+    await click('button#show');
+    assert.equal(currentURL(), '/transition-to?foo=bar');
   });
-
-  it('can cause a transition via helper', function() {
-    visit('/transition-to');
-
-    andThen(function() {
-      expect(currentPath()).to.equal('transition-to.index');
-    });
-
-    click('button:contains(Go to Helpers)');
-
-    andThen(function() {
-      expect(currentPath()).to.equal('transition-to.list');
-      expect(Ember.$('h2:contains(Helpers List)').length).to.equal(1);
-    });
-
-  });
-
-  it('can apply query params via helper', function() {
-    visit('/transition-to');
-
-    andThen(function() {
-      expect(currentPath()).to.equal('transition-to.index');
-    });
-
-    click('button:contains(Show Query Params)');
-
-    andThen(function() {
-      expect(currentURL()).to.equal('/transition-to?foo=bar');
-    });
-
-  });
-
 });
-
-

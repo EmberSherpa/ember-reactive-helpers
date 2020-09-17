@@ -1,57 +1,59 @@
-import { expect } from 'chai';
-import {
-  describeComponent,
-  it
-} from 'ember-mocha';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, setupOnerror } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-// NOTE: As of Ember 2.11.1, chai can't handle the thrown errors due to a change in error event dispatching
-// see https://github.com/emberjs/ember.js/issues/15013
-// for now, I am skipping the three tests that expect assertions
+module('Integration | r/get', function (hooks) {
+  setupRenderingTest(hooks);
 
-describeComponent(
-  'r/get',
-  'Integration: r/get',
-  {
-    integration: true
-  },
-  function() {
-    it('renders value', function() {
-      this.render(hbs`{{compute (r/get 'value') (hash value="foo")}}`);
-      expect(this.$()).to.have.length(1);
-      expect(this.$().text()).to.equal('foo');
-    });
+  hooks.beforeEach(function () {
+    // reset Ember.onerror
+    setupOnerror();
+  });
 
-    it('changes value when dependent key changes', function(){
-      this.set('animal', 'cat');
-      this.render(hbs`{{compute (r/get animal) (hash cat="Wiskers" dog="Barky")}}`);
-      expect(this.$().text()).to.equal('Wiskers');
+  test('renders value', async function (assert) {
+    await render(hbs`{{compute (r/get 'value') (hash value="foo")}}`);
+    assert.equal(this.element.textContent.trim(), 'foo');
+  });
 
-      this.set('animal', 'dog');
-      expect(this.$().text()).to.equal('Barky');
-    });
+  test('changes value when dependent key changes', async function (assert) {
+    this.set('animal', 'cat');
+    await render(hbs`{{compute (r/get animal) (hash cat="Wiskers" dog="Barky")}}`);
+    assert.equal(this.element.textContent.trim(), 'Wiskers');
 
-    [null, undefined, '', '   '].forEach((name) => {
-        it.skip(`"${name}" is not a valid argument`, function() {
-          this.set('invalidPropName', name);
-          expect(() => {
-            this.render(hbs`{{compute (r/get invalidPropName) (hash cat="Wiskers")}}`);
-          }).to.throw(`Assertion Failed: r/get expects a valid property name, instead got ${name}`);
-        });
-    });
+    this.set('animal', 'dog');
+    assert.equal(this.element.textContent.trim(), 'Barky');
+  });
 
-    it.skip('throws an error when received an array', function() {
-      this.set('propName', []);
-      expect(() => {
-        this.render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
-      }).to.throw(`Assertion Failed`);
-    });
-
-    it.skip('expects a target of type object to be passed in', function(){
-        expect(() => {
-          this.set('invalidObject', 1);
-          this.render(hbs`{{compute (r/get 'someKey') invalidObject}}`);
-        }).to.throw(`Assertion Failed: cannot call r/get with someKey on not an object`);
+  for (const prop of [null, undefined, '', '   ']) {
+    test('throws an error when received null', async function (assert) {
+      assert.expect(1);
+      setupOnerror(function (error) {
+        assert.equal(
+          error.message,
+          `Assertion Failed: r/get expects a valid property name, instead got ${prop}`
+        );
+      });
+      this.set('propName', prop);
+      await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
     });
   }
-);
+
+  test('throws an error when received an array', async function (assert) {
+    assert.expect(1);
+    setupOnerror(function (error) {
+      assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got `);
+    });
+    this.set('propName', []);
+    await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
+  });
+
+  test('expects a target of type object to be passed in', async function (assert) {
+    assert.expect(1);
+    setupOnerror(function (error) {
+      assert.equal(error.message, `Assertion Failed: cannot call r/get with someKey on not an object`);
+    });
+    this.set('invalidObject', 1);
+    await render(hbs`{{compute (r/get 'someKey') invalidObject}}`);
+  });
+});

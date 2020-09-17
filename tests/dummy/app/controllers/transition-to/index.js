@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
-export default Ember.Controller.extend({
-  queryParams: ['foo'],
-  foo: ''
-});
+export default class extends Controller {
+    queryParams = ['foo'];
+    @tracked foo;
+}
