@@ -1,10 +1,17 @@
 # ember-reactive-helpers
 
-[![Build Status](https://travis-ci.org/EmberSherpa/ember-reactive-helpers.svg)](https://travis-ci.org/EmberSherpa/ember-reactive-helpers)
-[![npm version](https://badge.fury.io/js/ember-reactive-helpers.svg)](http://badge.fury.io/js/ember-reactive-helpers)
-[![Dependency Status](https://david-dm.org/EmberSherpa/ember-reactive-helpers.svg)](https://david-dm.org/EmberSherpa/ember-reactive-helpers)
+[![NPM Version][npm-badge-img]][npm-badge-link]
+[![Build Status][build-status-img]][build-status-link]
+[![Ember Observer Score][ember-observer-badge]][ember-observer-url]
+[![Download Count][npm-downloads-img]][npm-badge-link]
 
 Collection of helpers to aid in reactive template programming with Ember.js.
+
+## Installation
+
+```
+ember install ember-reactive-helpers
+```
 
 ## Introduction
 
@@ -16,7 +23,7 @@ to process data on the way up in the Data Down Actions Up cycle. The `r` helper 
 
 ### `(r helper [arg1 arg2 ...])`
 
-Returns a function for a given helper and curry arguments to it.
+Returns a function for a given helper and curries arguments to it.
 
 ```hbs
 <Input @value={{this.value}}
@@ -24,7 +31,7 @@ Returns a function for a given helper and curry arguments to it.
 />
 ```
 
-`r` helper accepts functions as helpers. For example, let's say you have a method on the context called `addNumbers`
+The `r` helper accepts functions as helpers. For example, let's say you have a method in a Component named `addNumbers`
 
 ```js
 export default class extends Component {
@@ -43,7 +50,7 @@ You can use it in the template.
 
 ### `(r/get propName)`
 
-`(r/get)` helper returns a function. When called, the function will return the value taken from the object that it receives as the first argument at property propName.
+The `(r/get)` helper returns a function. When called, the function will return the value taken from the object that it receives as the first argument at property propName.
 
 ```hbs
 {{compute (r/get 'animal') (hash animal='cat')}} {{! //=> cat }}
@@ -59,8 +66,8 @@ You can use it in the template.
 ```
 ### `(r/debugger)`
 
-`(r/debugger)` will create a helper that will inject a debugger breakpoint into a helper pipe. It will pass through the value,
-that's passed into the helper.
+`(r/debugger)` will create a helper that will inject a debugger breakpoint into a helper pipe.
+It will pass through the value, that's passed into the helper.
 
 ```hbs
 <button {{action (pipe (some-helper) (r/debugger) (some-other-helper))}}>Do!</button>
@@ -68,7 +75,7 @@ that's passed into the helper.
 
 ### `(r/log ['your message'])`
 
-`(r/log)` helper will evaluate to a function. When called, this function will log the passed in message and arguments that it received.
+The `(r/log)` helper will evaluate to a function. When called, this function will log the passed in message and arguments that it received.
 
 ```hbs
 <button {{action (pipe (r/log 'before save') (action 'save') (r/log 'after save')) model}}>Save</button>
@@ -76,25 +83,19 @@ that's passed into the helper.
 
 ### `(r/tap value)`
 
-`(r/tap value)` helper will evaluate to a function that will return the passed in argument. 
+The `(r/tap value)` helper will evaluate to a function that will return the passed in argument. 
 
 ### `{{shhh anything}}`
 
-`{{shhh` helper will supress any output that's passed into it. This is useful when you want to compute a helper 
+The `{{shhh` helper will supress any output that's passed into it. This is useful when you want to compute a helper 
 without having its output rendered.
 
 ### `(transition-to 'destination' model (query-params foo='bar'))`
 
-`(transition-to)` helper the same argument signature as `link-to` but evaluates to an action that can be called to trigger transition.
+The `(transition-to)` helper has the same argument signature as `link-to` but evaluates to an action that can be called to trigger transition.
 
 ```hbs
-<button {{action (transition-to 'index')}}>Go to Index</button>
-```
-
-## Installation
-
-```
-ember install ember-reactive-helpers
+<button type="button" {{on "click" (transition-to 'index')}}>Go to Index</button>
 ```
 
 ## Helpful Links
@@ -106,13 +107,24 @@ ember install ember-reactive-helpers
 ## Looking for help?
 If you encounter a bug [please open an issue on GitHub](http://github.com/EmberSherpa/ember-reactive-helpers/issues).
 
-Contributing
-------------------------------------------------------------------------------
+## Compatibility
+
+-   Ember.js v3.12 or above
+-   Ember CLI v2.13 or above
+-   Node.js v10 or above
+
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
+
+[npm-badge-img]: https://badge.fury.io/js/ember-reactive-helpers.svg
+[npm-badge-link]: http://badge.fury.io/js/ember-reactive-helpers
+[build-status-img]: https://travis-ci.org/EmberSherpa/ember-reactive-helpers.svg?branch=master
+[build-status-link]: https://travis-ci.org/EmberSherpa/ember-reactive-helpers
+[npm-downloads-img]: https://img.shields.io/npm/dt/ember-reactive-helpers.svg
+[ember-observer-badge]: http://emberobserver.com/badges/ember-reactive-helpers.svg
+[ember-observer-url]: http://emberobserver.com/addons/ember-reactive-helpers
