@@ -15,9 +15,7 @@ ember install ember-reactive-helpers
 
 ## Introduction
 
-Reactive helpers are helpers that return functions. These functions can be bound to event handlers 
-to process data on the way up in the Data Down Actions Up cycle. The `r` helper makes it possible to use
-[`ember-composable-helpers`](https://github.com/DockYard/ember-composable-helpers) in event handlers where execution of the helper is delayed until the event is triggered.
+Reactive helpers are helpers that return functions. These functions can be bound to event handlers to process data on the way up in the Data Down Actions Up cycle. The `r` helper makes it possible to use [`ember-composable-helpers`](https://github.com/DockYard/ember-composable-helpers) in event handlers where execution of the helper is delayed until the event is triggered.
 
 ## Helpers
 
@@ -64,6 +62,7 @@ The `(r/get)` helper returns a function. When called, the function will return t
 {{compute (r/param) 'hello' 'world'}} {{! //=> 'hello'}}
 {{compute (r/param 1) 'hello' 'world'}} {{! //=> 'world'}}
 ```
+
 ### `(r/debugger)`
 
 `(r/debugger)` will create a helper that will inject a debugger breakpoint into a helper pipe.
@@ -83,11 +82,11 @@ The `(r/log)` helper will evaluate to a function. When called, this function wil
 
 ### `(r/tap value)`
 
-The `(r/tap value)` helper will evaluate to a function that will return the passed in argument. 
+The `(r/tap value)` helper will evaluate to a function that will return the passed in argument.
 
 ### `{{shhh anything}}`
 
-The `{{shhh` helper will supress any output that's passed into it. This is useful when you want to compute a helper 
+The `{{shhh` helper will suppress any output that's passed into it. This is useful when you want to compute a helper
 without having its output rendered.
 
 ### `(transition-to 'destination' model (query-params foo='bar'))`
@@ -105,13 +104,14 @@ The `(transition-to)` helper has the same argument signature as `link-to` but ev
 - ### [Changelog](CHANGELOG.md)
 
 ## Looking for help?
+
 If you encounter a bug [please open an issue on GitHub](http://github.com/EmberSherpa/ember-reactive-helpers/issues).
 
 ## Compatibility
 
--   Ember.js v3.12 or above
--   Ember CLI v2.13 or above
--   Node.js v10 or above
+- Ember.js v3.12 or above
+- Ember CLI v2.13 or above
+- Node.js v10 or above
 
 ## Contributing
 

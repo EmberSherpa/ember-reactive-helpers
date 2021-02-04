@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0
+
+This is a minor release with no new features added.
+
+- Upgraded to ember/ember-cli 3.24
+- `prettier` integration and linting fixes
+- Removed usage of Travis and added Github Actions integration
+- Fixed `transition-to` helper to use `router` service instead of deprecated `router:main`
+
 ## 0.6.0
 
 - Now dependent on Ember (&CLI) 3.20
