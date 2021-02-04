@@ -12,9 +12,7 @@ export default class extends Controller {
     }
 
     let { query, page } = this;
-    let url = `https://api.github.com/search/issues?repo:emberjs/ember.js&q=${encodeURIComponent(
-      query
-    )}&page=${page}`;
+    let url = `https://api.github.com/search/issues?repo:emberjs/ember.js&q=${encodeURIComponent(query)}&page=${page}`;
 
     const response = yield fetch(url, {
       method: 'GET',

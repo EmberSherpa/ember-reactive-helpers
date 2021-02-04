@@ -6,8 +6,8 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
-  this.route('transition-to', function(){
+Router.map(function () {
+  this.route('transition-to', function () {
     this.route('list');
   });
   this.route('r');
