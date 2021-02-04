@@ -29,7 +29,7 @@
             "rangeStrategy": "bump"
         }
     ],
-    "enabledManagers": ["npm", "travis"],
+    "enabledManagers": ["npm"],
     "masterIssue": true,
     "labels": ["deps"],
     "prBodyNotes": ["cc @tzellman"]
