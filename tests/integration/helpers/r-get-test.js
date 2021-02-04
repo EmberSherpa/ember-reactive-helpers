@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, setupOnerror } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | r/get', function (hooks) {
   setupRenderingTest(hooks);
@@ -29,10 +29,7 @@ module('Integration | r/get', function (hooks) {
     test('throws an error when received null', async function (assert) {
       assert.expect(1);
       setupOnerror(function (error) {
-        assert.equal(
-          error.message,
-          `Assertion Failed: r/get expects a valid property name, instead got ${prop}`
-        );
+        assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got ${prop}`);
       });
       this.set('propName', prop);
       await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);

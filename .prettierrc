@@ -1,0 +1,48 @@
+printWidth: 120
+tabWidth: 2
+useTabs: false
+endOfLine: lf
+overrides:
+    - files:
+          - "*.ts"
+          - "*.js"
+      options:
+          parser: "typescript"
+          arrowParens: always
+          bracketSpacing: true
+          semi: true
+          singleQuote: true
+          trailingComma: none
+    - files:
+          - "package.json"
+          - "package-lock.json"
+      options:
+          parser: "json"
+          singleQuote: false
+          trailingComma: none
+          printWidth: 80
+          tabWidth: 2
+    - files:
+          - "*.json"
+      options:
+          parser: "json"
+          singleQuote: false
+          trailingComma: none
+    - files:
+          - "*.yml"
+          - ".prettierrc"
+      options:
+          parser: "yaml"
+          singleQuote: false
+    - files:
+          - "*.md"
+      options:
+          parser: "markdown"
+    - files:
+          - "*.scss"
+      options:
+          parser: "scss"
+    - files:
+          - "*.css"
+      options:
+          parser: "css"

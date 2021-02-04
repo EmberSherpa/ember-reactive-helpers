@@ -3,6 +3,6 @@ module.exports = {
     embertest: true
   },
   globals: {
-    "$": true
-  },
+    $: true
+  }
 };
