@@ -123,8 +123,8 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 [npm-badge-img]: https://badge.fury.io/js/ember-reactive-helpers.svg
 [npm-badge-link]: http://badge.fury.io/js/ember-reactive-helpers
-[build-status-img]: https://travis-ci.org/EmberSherpa/ember-reactive-helpers.svg?branch=master
-[build-status-link]: https://travis-ci.org/EmberSherpa/ember-reactive-helpers
+[build-status-img]: https://github.com/EmberSherpa/ember-reactive-helpers/workflows/Build/badge.svg?branch=master&event=push
+[build-status-link]: https://github.com/EmberSherpa/ember-reactive-helpers/actions?query=workflow%3A%22Build%22
 [npm-downloads-img]: https://img.shields.io/npm/dt/ember-reactive-helpers.svg
 [ember-observer-badge]: http://emberobserver.com/badges/ember-reactive-helpers.svg
 [ember-observer-url]: http://emberobserver.com/addons/ember-reactive-helpers
