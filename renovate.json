@@ -11,9 +11,7 @@
         "enabled": true,
         "stabilityDays": 2,
         "prCreation": "not-pending",
-        "groupName": "minor dependencies",
-        "automerge": true,
-        "automergeType": "pr"
+        "groupName": "minor dependencies"
     },
     "patch": {
         "enabled": true,
