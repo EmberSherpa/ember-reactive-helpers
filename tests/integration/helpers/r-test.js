@@ -53,7 +53,7 @@ module('Integration | r/get', function (hooks) {
     let array = A(['a', 'b', 'c']);
     this.set('array', array);
 
-    await render(hbs`{{compute (r 'object-at' 1 (get array '[]'))}}`);
+    await render(hbs`{{compute (r 'object-at' 1 (get this.array '[]'))}}`);
     assert.equal(this.element.textContent.trim(), 'b');
 
     run(() => array.insertAt(0, 'z'));
@@ -70,7 +70,7 @@ module('Integration | r/get', function (hooks) {
     this.set('sum', function ([a, b]) {
       return a + b;
     });
-    await render(hbs`{{compute (r sum 10) 100}}`);
+    await render(hbs`{{compute (r this.sum 10) 100}}`);
     assert.equal(this.element.textContent.trim(), '110');
   });
 
@@ -78,7 +78,7 @@ module('Integration | r/get', function (hooks) {
     this.set('operation', function sum([a, b]) {
       return a + b;
     });
-    await render(hbs`{{compute (r operation 10) 100}}`);
+    await render(hbs`{{compute (r this.operation 10) 100}}`);
     assert.equal(this.element.textContent.trim(), '110');
 
     this.set('operation', function subtract([a, b]) {
@@ -91,8 +91,8 @@ module('Integration | r/get', function (hooks) {
     this.set('count', 0);
     await render(hbs`
       {{#with (r 'add' 1) as |increment|}}
-        <span>clicks: {{count}}</span>
-        <button {{action (pipe increment (action (mut count))) count}}>+1</button>
+        <span>clicks: {{this.count}}</span>
+        <button {{action (pipe increment (action (mut this.count))) this.count}}>+1</button>
       {{/with}}
     `);
     assert.equal(find('span').textContent.trim(), 'clicks: 0');
@@ -105,7 +105,7 @@ module('Integration | r/get', function (hooks) {
     this.set('multiplyHash', function (arr, { x, y, z }) {
       return x * y * z;
     });
-    await render(hbs`{{compute (r multiplyHash x=x y=y z=z)}}`);
+    await render(hbs`{{compute (r this.multiplyHash x=this.x y=this.y z=this.z)}}`);
     assert.equal(this.element.textContent.trim(), '-30');
     this.set('x', -7);
     assert.equal(this.element.textContent.trim(), '42');

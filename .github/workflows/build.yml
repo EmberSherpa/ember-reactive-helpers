@@ -37,11 +37,9 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           # test addons with the same minimum supported node version as Ember CLI
-          node-version: "10.x"
+          node-version: "12.x"
       - name: Tests
-        env:
-          EMBER_TRY_SCENARIO: ${{ matrix.ember }}
         run: |
           npm ci
           npm run lint
-          npm run test:ember
+          npx ember try:one ${{ matrix.ember }}

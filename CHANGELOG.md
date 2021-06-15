@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.0
+
+This is a minor release with no new features added, and some deprecations removed.
+
+- Upgraded to ember/ember-cli 3.26
+- updated "r" test/page (and docs) to use keypress instead of input event
+- removed unnecessary addon dependency: ember-promise-helpers
+- updated github token for the concurrency test/demo
+- removed usage of deprecated query-params helper in favor of hash
+- added check in transition-to helper for objectLiteral queryParams
+- fixed deprecation warnings (no implicit this) in tests
+
 ## 0.7.0
 
 This is a minor release with no new features added.

@@ -22,10 +22,10 @@ module('Integration | shhh', function (hooks) {
 
     this.set('argument', 'FOO');
 
-    await render(hbs`{{echo argument}}`);
+    await render(hbs`{{echo this.argument}}`);
     assert.equal(this.element.textContent.trim(), 'FOO');
 
-    await render(hbs`{{shhh (echo argument)}}`);
+    await render(hbs`{{shhh (echo this.argument)}}`);
     assert.equal(this.element.textContent.trim(), '');
   });
 });

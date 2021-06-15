@@ -8,7 +8,9 @@ module('Integration | r/tap', function (hooks) {
 
   test('removes event object from arguments', async function (assert) {
     this.set('value', null);
-    await render(hbs`{{value}}<button {{action (pipe (r/tap 'hello world') (action (mut value)))}}></button>`);
+    await render(
+      hbs`{{this.value}}<button {{action (pipe (r/tap 'hello world') (action (mut this.value)))}}></button>`
+    );
     assert.equal(this.element.textContent.trim(), '');
     await click('button');
     assert.equal(this.element.textContent.trim(), 'hello world');
