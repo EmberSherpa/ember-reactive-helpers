@@ -18,7 +18,7 @@ module('Integration | r/get', function (hooks) {
 
   test('changes value when dependent key changes', async function (assert) {
     this.set('animal', 'cat');
-    await render(hbs`{{compute (r/get animal) (hash cat="Wiskers" dog="Barky")}}`);
+    await render(hbs`{{compute (r/get this.animal) (hash cat="Wiskers" dog="Barky")}}`);
     assert.equal(this.element.textContent.trim(), 'Wiskers');
 
     this.set('animal', 'dog');
@@ -32,7 +32,7 @@ module('Integration | r/get', function (hooks) {
         assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got ${prop}`);
       });
       this.set('propName', prop);
-      await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
+      await render(hbs`{{compute (r/get this.propName) (hash cat="Wiskers")}}`);
     });
   }
 
@@ -42,7 +42,7 @@ module('Integration | r/get', function (hooks) {
       assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got `);
     });
     this.set('propName', []);
-    await render(hbs`{{compute (r/get propName) (hash cat="Wiskers")}}`);
+    await render(hbs`{{compute (r/get this.propName) (hash cat="Wiskers")}}`);
   });
 
   test('expects a target of type object to be passed in', async function (assert) {
@@ -51,6 +51,6 @@ module('Integration | r/get', function (hooks) {
       assert.equal(error.message, `Assertion Failed: cannot call r/get with someKey on not an object`);
     });
     this.set('invalidObject', 1);
-    await render(hbs`{{compute (r/get 'someKey') invalidObject}}`);
+    await render(hbs`{{compute (r/get 'someKey') this.invalidObject}}`);
   });
 });

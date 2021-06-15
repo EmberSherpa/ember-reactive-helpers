@@ -1,5 +1,8 @@
 <h2>Dasherize input</h2>
 <span id="result">{{this.value}}</span>
-<Input id="dasherize" @type="text" @value={{this.value}}
-        @input={{fn (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
+<Input
+  id="dasherize"
+  @type="text"
+  @value={{this.value}}
+  {{on "keyup" (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
 />

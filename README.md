@@ -24,8 +24,9 @@ Reactive helpers are helpers that return functions. These functions can be bound
 Returns a function for a given helper and curries arguments to it.
 
 ```hbs
-<Input @value={{this.value}}
-    @input={{fn (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
+<Input
+    @value={{this.value}}
+    {{on "keyup" (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
 />
 ```
 

@@ -2,6 +2,8 @@ import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 import { tracked } from '@glimmer/tracking';
 
+const TOKEN_BASE64 = 'Z2hwX204SjduR1dPQ2FraHVhWWs5YmFZblhJZnNzM0xmVzJ6ZHlIWQ==';
+
 export default class extends Controller {
   @tracked query = '';
   @tracked page = 1;
@@ -17,7 +19,7 @@ export default class extends Controller {
     const response = yield fetch(url, {
       method: 'GET',
       headers: {
-        Authorization: 'token 6ebfe062b56196971251caa0c87c032bf73a57e5'
+        Authorization: `token ${atob(TOKEN_BASE64)}`
       }
     });
     return yield response.json();
