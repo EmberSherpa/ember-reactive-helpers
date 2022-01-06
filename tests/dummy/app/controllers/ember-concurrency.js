@@ -8,7 +8,7 @@ export default class extends Controller {
   @tracked query = '';
   @tracked page = 1;
 
-  @(task(function* (throttle = 0) {
+  @task(function* (throttle = 0) {
     if (throttle) {
       yield timeout(throttle);
     }
@@ -23,6 +23,6 @@ export default class extends Controller {
       }
     });
     return yield response.json();
-  }).drop())
+  }).drop()
   search;
 }

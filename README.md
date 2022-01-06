@@ -24,10 +24,7 @@ Reactive helpers are helpers that return functions. These functions can be bound
 Returns a function for a given helper and curries arguments to it.
 
 ```hbs
-<Input
-    @value={{this.value}}
-    {{on "keyup" (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
-/>
+<Input @value={{this.value}} {{on "keyup" (pipe (r "dasherize" this.value) (fn (mut this.value)))}} />
 ```
 
 The `r` helper accepts functions as helpers. For example, let's say you have a method in a Component named `addNumbers`
@@ -52,7 +49,7 @@ You can use it in the template.
 The `(r/get)` helper returns a function. When called, the function will return the value taken from the object that it receives as the first argument at property propName.
 
 ```hbs
-{{compute (r/get 'animal') (hash animal='cat')}} {{! //=> cat }}
+{{compute (r/get "animal") (hash animal="cat")}} {{! //=> cat }}
 ```
 
 ### `(r/param [index])`
@@ -60,8 +57,10 @@ The `(r/get)` helper returns a function. When called, the function will return t
 `(r/param)` returns a function. When called, this function will return the received argument at the specified index.
 
 ```hbs
-{{compute (r/param) 'hello' 'world'}} {{! //=> 'hello'}}
-{{compute (r/param 1) 'hello' 'world'}} {{! //=> 'world'}}
+{{compute (r/param) "hello" "world"}}
+{{! //=> 'hello'}}
+{{compute (r/param 1) "hello" "world"}}
+{{! //=> 'world'}}
 ```
 
 ### `(r/debugger)`
@@ -78,7 +77,7 @@ It will pass through the value, that's passed into the helper.
 The `(r/log)` helper will evaluate to a function. When called, this function will log the passed in message and arguments that it received.
 
 ```hbs
-<button {{action (pipe (r/log 'before save') (action 'save') (r/log 'after save')) model}}>Save</button>
+<button {{action (pipe (r/log "before save") (action "save") (r/log "after save")) model}}>Save</button>
 ```
 
 ### `(r/tap value)`
@@ -95,7 +94,7 @@ without having its output rendered.
 The `(transition-to)` helper has the same argument signature as `link-to` but evaluates to an action that can be called to trigger transition.
 
 ```hbs
-<button type="button" {{on "click" (transition-to 'index')}}>Go to Index</button>
+<button type="button" {{on "click" (transition-to "index")}}>Go to Index</button>
 ```
 
 ## Helpful Links
@@ -124,8 +123,8 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 [npm-badge-img]: https://badge.fury.io/js/ember-reactive-helpers.svg
 [npm-badge-link]: http://badge.fury.io/js/ember-reactive-helpers
-[build-status-img]: https://github.com/EmberSherpa/ember-reactive-helpers/workflows/Build/badge.svg?branch=master&event=push
-[build-status-link]: https://github.com/EmberSherpa/ember-reactive-helpers/actions?query=workflow%3A%22Build%22
+[build-status-img]: https://github.com/EmberSherpa/ember-reactive-helpers/workflows/CI/badge.svg?branch=master&event=push
+[build-status-link]: https://github.com/EmberSherpa/ember-reactive-helpers/actions?query=workflow%3A%22CI%22
 [npm-downloads-img]: https://img.shields.io/npm/dt/ember-reactive-helpers.svg
 [ember-observer-badge]: http://emberobserver.com/badges/ember-reactive-helpers.svg
 [ember-observer-url]: http://emberobserver.com/addons/ember-reactive-helpers

@@ -8,11 +8,11 @@ module('Integration | r/param', function (hooks) {
 
   test('renders', async function (assert) {
     await render(hbs`{{compute (r/param) 'foo'}}`);
-    assert.equal(this.element.textContent.trim(), 'foo');
+    assert.dom(this.element).hasText('foo');
   });
 
   test('accepts an index param', async function (assert) {
     await render(hbs`{{compute (r/param 1) 'foo' 'bar'}}`);
-    assert.equal(this.element.textContent.trim(), 'bar');
+    assert.dom(this.element).hasText('bar');
   });
 });

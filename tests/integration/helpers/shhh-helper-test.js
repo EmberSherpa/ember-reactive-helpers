@@ -8,8 +8,8 @@ module('Integration | shhh', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(hbs`{{shhh-helper}}`);
-    assert.equal(this.element.textContent.trim(), '');
+    await render(hbs`{{shhh "foo"}}`);
+    assert.dom(this.element).hasNoText();
   });
 
   test('prevents output from being rendered', async function (assert) {
@@ -23,9 +23,9 @@ module('Integration | shhh', function (hooks) {
     this.set('argument', 'FOO');
 
     await render(hbs`{{echo this.argument}}`);
-    assert.equal(this.element.textContent.trim(), 'FOO');
+    assert.dom(this.element).hasText('FOO');
 
     await render(hbs`{{shhh (echo this.argument)}}`);
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasNoText();
   });
 });

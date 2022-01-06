@@ -13,23 +13,23 @@ module('Integration | r/get', function (hooks) {
 
   test('renders value', async function (assert) {
     await render(hbs`{{compute (r/get 'value') (hash value="foo")}}`);
-    assert.equal(this.element.textContent.trim(), 'foo');
+    assert.dom(this.element).hasText('foo');
   });
 
   test('changes value when dependent key changes', async function (assert) {
     this.set('animal', 'cat');
     await render(hbs`{{compute (r/get this.animal) (hash cat="Wiskers" dog="Barky")}}`);
-    assert.equal(this.element.textContent.trim(), 'Wiskers');
+    assert.dom(this.element).hasText('Wiskers');
 
     this.set('animal', 'dog');
-    assert.equal(this.element.textContent.trim(), 'Barky');
+    assert.dom(this.element).hasText('Barky');
   });
 
   for (const prop of [null, undefined, '', '   ']) {
     test('throws an error when received null', async function (assert) {
       assert.expect(1);
       setupOnerror(function (error) {
-        assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got ${prop}`);
+        assert.strictEqual(error.message, `Assertion Failed: r/get expects a valid property name, instead got ${prop}`);
       });
       this.set('propName', prop);
       await render(hbs`{{compute (r/get this.propName) (hash cat="Wiskers")}}`);
@@ -39,7 +39,7 @@ module('Integration | r/get', function (hooks) {
   test('throws an error when received an array', async function (assert) {
     assert.expect(1);
     setupOnerror(function (error) {
-      assert.equal(error.message, `Assertion Failed: r/get expects a valid property name, instead got `);
+      assert.strictEqual(error.message, `Assertion Failed: r/get expects a valid property name, instead got `);
     });
     this.set('propName', []);
     await render(hbs`{{compute (r/get this.propName) (hash cat="Wiskers")}}`);
@@ -48,7 +48,7 @@ module('Integration | r/get', function (hooks) {
   test('expects a target of type object to be passed in', async function (assert) {
     assert.expect(1);
     setupOnerror(function (error) {
-      assert.equal(error.message, `Assertion Failed: cannot call r/get with someKey on not an object`);
+      assert.strictEqual(error.message, `Assertion Failed: cannot call r/get with someKey on not an object`);
     });
     this.set('invalidObject', 1);
     await render(hbs`{{compute (r/get 'someKey') this.invalidObject}}`);
