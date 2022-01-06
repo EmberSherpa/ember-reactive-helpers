@@ -1,6 +1,9 @@
 # compiled output
 /dist/
 /tmp/
+/.idea
+/*.iml
+/coverage
 
 # dependencies
 /bower_components/
@@ -20,17 +23,16 @@
 /.prettierrc
 /.template-lintrc.js
 /.watchmanconfig
-/bower.json
 /config/ember-try.js
 /CONTRIBUTING.md
 /ember-cli-build.js
+/renovate.json
 /testem.js
 /tests/
 /yarn-error.log
 /yarn.lock
 .gitkeep
-/.idea
-/renovate.json
+commitlint.config.js
 
 # ember-try
 /.node_modules.ember-try/
