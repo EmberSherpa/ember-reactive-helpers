@@ -1,34 +1,38 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["config:base"],
-    "major": {
-        "enabled": true,
-        "stabilityDays": 3,
-        "prCreation": "not-pending",
-        "groupName": "major dependencies"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "major": {
+    "enabled": true,
+    "stabilityDays": 3,
+    "prCreation": "not-pending",
+    "groupName": "major dependencies"
+  },
+  "minor": {
+    "enabled": true,
+    "stabilityDays": 2,
+    "prCreation": "not-pending",
+    "groupName": "minor dependencies"
+  },
+  "patch": {
+    "enabled": true,
+    "groupName": "patch dependencies"
+  },
+  "pin": {
+    "enabled": false
+  },
+  "separateMinorPatch": true,
+  "packageRules": [
+    {
+      "matchPaths": ["+(package.json)"],
+      "rangeStrategy": "bump"
     },
-    "minor": {
-        "enabled": true,
-        "stabilityDays": 2,
-        "prCreation": "not-pending",
-        "groupName": "minor dependencies"
-    },
-    "patch": {
-        "enabled": true,
-        "groupName": "patch dependencies"
-    },
-    "pin": {
-        "enabled": false
-    },
-    "separateMinorPatch": true,
-    "packageRules": [
-        {
-            "paths": ["+(package.json)"],
-            "rangeStrategy": "bump"
-        }
-    ],
-    "enabledManagers": ["npm"],
-    "masterIssue": true,
-    "labels": ["deps"],
-    "prBodyNotes": ["cc @tzellman"]
+    {
+      "matchPackageNames": ["husky"],
+      "allowedVersions": "<5"
+    }
+  ],
+  "enabledManagers": ["npm"],
+  "masterIssue": true,
+  "labels": ["deps"],
+  "prBodyNotes": ["cc @tzellman"]
 }

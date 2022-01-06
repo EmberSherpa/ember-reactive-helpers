@@ -11,8 +11,8 @@ module('Integration | r/tap', function (hooks) {
     await render(
       hbs`{{this.value}}<button {{action (pipe (r/tap 'hello world') (action (mut this.value)))}}></button>`
     );
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasNoText();
     await click('button');
-    assert.equal(this.element.textContent.trim(), 'hello world');
+    assert.dom(this.element).hasText('hello world');
   });
 });

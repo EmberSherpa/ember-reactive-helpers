@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { click, find, render, settled } from '@ember/test-helpers';
+import { click, render, settled } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Helper, { helper as buildHelper } from '@ember/component/helper';
 import { A } from '@ember/array';
@@ -18,7 +18,7 @@ module('Integration | r/get', function (hooks) {
     );
 
     await render(hbs`{{compute (r 'uppercase') 'foo'}}`);
-    assert.equal(this.element.textContent.trim(), 'FOO');
+    assert.dom(this.element).hasText('FOO');
   });
 
   test('supports complex helpers', async function (assert) {
@@ -31,7 +31,7 @@ module('Integration | r/get', function (hooks) {
       }
     );
     await render(hbs`{{compute (r 'uppercase') 'foo'}}`);
-    assert.equal(this.element.textContent.trim(), 'FOO');
+    assert.dom(this.element).hasText('FOO');
   });
 
   test('maintains reference to helpers instance on complex helpers', async function (assert) {
@@ -46,7 +46,7 @@ module('Integration | r/get', function (hooks) {
     );
 
     await render(hbs`{{compute (r 'uppercase') 'foo'}}`);
-    assert.equal(this.element.textContent.trim(), 'FOO');
+    assert.dom(this.element).hasText('FOO');
   });
 
   test('allows complex object to call recompute', async function (assert) {
@@ -54,16 +54,16 @@ module('Integration | r/get', function (hooks) {
     this.set('array', array);
 
     await render(hbs`{{compute (r 'object-at' 1 (get this.array '[]'))}}`);
-    assert.equal(this.element.textContent.trim(), 'b');
+    assert.dom(this.element).hasText('b');
 
     run(() => array.insertAt(0, 'z'));
     await settled();
-    assert.equal(this.element.textContent.trim(), 'a');
+    assert.dom(this.element).hasText('a');
   });
 
   test('curries passed in arguments', async function (assert) {
     await render(hbs`{{compute (r 'add' 5) 10}}`);
-    assert.equal(this.element.textContent.trim(), '15');
+    assert.dom(this.element).hasText('15');
   });
 
   test('can receive a function', async function (assert) {
@@ -71,7 +71,7 @@ module('Integration | r/get', function (hooks) {
       return a + b;
     });
     await render(hbs`{{compute (r this.sum 10) 100}}`);
-    assert.equal(this.element.textContent.trim(), '110');
+    assert.dom(this.element).hasText('110');
   });
 
   test('can re-evaluates when function changes', async function (assert) {
@@ -79,12 +79,12 @@ module('Integration | r/get', function (hooks) {
       return a + b;
     });
     await render(hbs`{{compute (r this.operation 10) 100}}`);
-    assert.equal(this.element.textContent.trim(), '110');
+    assert.dom(this.element).hasText('110');
 
     this.set('operation', function subtract([a, b]) {
       return a - b;
     });
-    assert.equal(this.element.textContent.trim(), '-90');
+    assert.dom(this.element).hasText('-90');
   });
 
   test('can be used in a pipe', async function (assert) {
@@ -95,9 +95,9 @@ module('Integration | r/get', function (hooks) {
         <button {{action (pipe increment (action (mut this.count))) this.count}}>+1</button>
       {{/with}}
     `);
-    assert.equal(find('span').textContent.trim(), 'clicks: 0');
+    assert.dom('span').hasText('clicks: 0');
     await click('button');
-    assert.equal(find('span').textContent.trim(), 'clicks: 1');
+    assert.dom('span').hasText('clicks: 1');
   });
 
   test('can take arguments from a hash and recomputes when an argument changes', async function (assert) {
@@ -106,8 +106,8 @@ module('Integration | r/get', function (hooks) {
       return x * y * z;
     });
     await render(hbs`{{compute (r this.multiplyHash x=this.x y=this.y z=this.z)}}`);
-    assert.equal(this.element.textContent.trim(), '-30');
+    assert.dom(this.element).hasText('-30');
     this.set('x', -7);
-    assert.equal(this.element.textContent.trim(), '42');
+    assert.dom(this.element).hasText('42');
   });
 });

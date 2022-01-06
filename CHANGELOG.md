@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0
+
+This is the first major release! There are no new features, however the upgrade to
+`ember-auto-import` is breaking and warrants a major version bump.
+
+- Upgraded `ember-auto-import` to 2.x
+- Upgraded `ember-cli` to 4.x
+- Updated tests to leverage `qunit-dom` helpers, which also fixed several lint errors
+
 ## 0.8.0
 
 This is a minor release with no new features added, and some deprecations removed.
