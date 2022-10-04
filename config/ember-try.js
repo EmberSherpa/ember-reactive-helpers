@@ -47,20 +47,6 @@ module.exports = async function () {
         }
       },
       {
-        name: 'ember-default-with-jquery',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'jquery-integration': false
-          })
-        },
-        npm: {
-          devDependencies: {
-            '@ember/jquery': '^1.1.0',
-            '@ember/optional-features': '^2.0.0'
-          }
-        }
-      },
-      {
         name: 'ember-classic',
         env: {
           EMBER_OPTIONAL_FEATURES: JSON.stringify({

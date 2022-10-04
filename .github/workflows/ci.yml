@@ -17,13 +17,14 @@ jobs:
   test:
     name: "Tests"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: npm
       - name: Install Dependencies
         run: npm ci
@@ -35,12 +36,13 @@ jobs:
   floating:
     name: "Floating Dependencies"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: npm
       - name: Install Dependencies
         run: npm install --no-shrinkwrap
@@ -52,6 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     needs: "test"
+    timeout-minutes: 10
 
     strategy:
       fail-fast: false
@@ -61,7 +64,6 @@ jobs:
           - ember-lts-3.28
           - ember-beta
           - ember-classic
-          - ember-default-with-jquery
           - embroider-safe
           #          - embroider-optimized
           - ember-release
@@ -71,11 +73,11 @@ jobs:
             experimental: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: npm
       - name: Install Dependencies
         run: npm ci
