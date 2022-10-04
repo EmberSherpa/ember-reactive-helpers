@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0
+
+This is a minor release with no new features added.
+
+- Upgraded to ember/ember-cli 4.7
+- Updated depencencies to latest semver
+- Updated to use lockfileVersion 2
+
 ## 1.0.0
 
 This is the first major release! There are no new features, however the upgrade to
