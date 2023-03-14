@@ -1,9 +1,6 @@
-import Ember from 'ember';
 import { helper as buildHelper } from '@ember/component/helper';
 
-const {
-  Logger: { log }
-} = Ember;
+const log = console.log.bind(console);
 
 export function rLog(params) {
   return function (value) {

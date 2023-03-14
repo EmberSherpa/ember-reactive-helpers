@@ -4,5 +4,5 @@
   id="dasherize"
   @type="text"
   @value={{this.value}}
-  {{on "keyup" (pipe (r "dasherize" this.value) (fn (mut this.value)))}}
+  {{on "keyup" (pipe (r/log "in dasherize") (r "dasherize" this.value) (fn (mut this.value)))}}
 />
