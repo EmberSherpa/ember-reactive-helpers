@@ -4699,11 +4699,11 @@ e.default=n})),define("ember-reactive-helpers/helpers/r/get",["exports","@ember/
 function a(e){let[t]=e
 return function(e){return(0,i.get)(e,t)}}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.rGet=a
 var s=(0,t.helper)(a)
-e.default=s})),define("ember-reactive-helpers/helpers/r/log",["exports","ember","@ember/component/helper"],(function(e,t,r){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.rLog=i
-const{Logger:{log:n}}=t.default
-function i(e){return function(t){return n(...e,t),t}}var a=(0,r.helper)(i)
-e.default=a})),define("ember-reactive-helpers/helpers/r/param",["exports","@ember/component/helper"],(function(e,t){"use strict"
+e.default=s})),define("ember-reactive-helpers/helpers/r/log",["exports","@ember/component/helper"],(function(e,t){"use strict"
+Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.rLog=n
+const r=console.log.bind(console)
+function n(e){return function(t){return r(...e,t),t}}var i=(0,t.helper)(n)
+e.default=i})),define("ember-reactive-helpers/helpers/r/param",["exports","@ember/component/helper"],(function(e,t){"use strict"
 function r(e){let[t=0]=e
 return function(){if(!(arguments.length-1<t))return arguments[t]}}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.rParam=r
 var n=(0,t.helper)(r)
