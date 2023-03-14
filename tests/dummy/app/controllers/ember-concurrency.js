@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { task, timeout } from 'ember-concurrency';
 import { tracked } from '@glimmer/tracking';
+import { task, timeout } from 'ember-concurrency';
 
 const TOKEN_BASE64 = 'Z2hwX204SjduR1dPQ2FraHVhWWs5YmFZblhJZnNzM0xmVzJ6ZHlIWQ==';
 

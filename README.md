@@ -109,8 +109,8 @@ If you encounter a bug [please open an issue on GitHub](http://github.com/EmberS
 
 ## Compatibility
 
-- Ember.js v3.24 or above
-- Ember CLI v3.24 or above
+- Ember.js v3.28 or above
+- Ember CLI v3.28 or above
 - Node.js v14 or above
 
 ## Contributing
