@@ -1,12 +1,12 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { A } from '@ember/array';
+import Helper, { helper as buildHelper } from '@ember/component/helper';
+import { run } from '@ember/runloop';
 import { click, render, settled } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import Helper, { helper as buildHelper } from '@ember/component/helper';
-import { A } from '@ember/array';
-import { run } from '@ember/runloop';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 
-module('Integration | r/get', function (hooks) {
+module('Integration | r', function (hooks) {
   setupRenderingTest(hooks);
 
   test('supports simple helpers', async function (assert) {
@@ -87,13 +87,20 @@ module('Integration | r/get', function (hooks) {
     assert.dom(this.element).hasText('-90');
   });
 
-  test('can be used in a pipe', async function (assert) {
+  test('can be used to increment a value', async function (assert) {
     this.set('count', 0);
+
+    this.set('callback', function sum(current, func) {
+      console.log(current);
+      console.log(func);
+      return func(current);
+    });
+
     await render(hbs`
-      {{#with (r 'add' 1) as |increment|}}
+      {{#let (r 'add' 1) as |increment|}}
         <span>clicks: {{this.count}}</span>
-        <button {{action (pipe increment (action (mut this.count))) this.count}}>+1</button>
-      {{/with}}
+        <button type="button" {{on "click" (fn (mut this.count) (compute increment this.count))}}>+1</button>
+      {{/let}}
     `);
     assert.dom('span').hasText('clicks: 0');
     await click('button');

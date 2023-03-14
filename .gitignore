@@ -20,6 +20,7 @@
 /testem.log
 /yarn-error.log
 .idea
+.tool-versions
 
 # ember-try
 /.node_modules.ember-try/

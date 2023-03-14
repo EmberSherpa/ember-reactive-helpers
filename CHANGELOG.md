@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+This is a minor release with no new features added.
+
+- Upgraded to ember/ember-cli 4.11
+- Updated depencencies to latest semver
+
 ## 1.1.0
 
 This is a minor release with no new features added.
